@@ -1,5 +1,6 @@
 package com.o7q.kineticdamage;
 
+import com.o7q.kineticdamage.config.ModConfigs;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
@@ -10,6 +11,8 @@ import net.minecraft.util.math.Vec3d;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.o7q.kineticdamage.config.ModConfigs.*;
+
 public class KineticDamage implements ModInitializer {
 	public static final String MOD_ID = "kineticdamage";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
@@ -17,52 +20,40 @@ public class KineticDamage implements ModInitializer {
 	@Override
 	public void onInitialize()
 	{
+		ModConfigs.registerConfigs();
+
+
+
 		AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) ->
 		{
-			int damageHorizontalMultiplier = 10;
-			int damageVerticalMultiplier = 100;
-
-			int damageVerticalMax = 100;
-			int damageHorizontalMax = -1;
-
-			int knockbackXMultiplier = 10;
-			int knockbackYMultiplier = 1000;
-			int knockbackZMultiplier = 10;
-
-			boolean debugLog = true;
-
-
-
 			if (!world.isClient())
 			{
 				Vec3d playerVelocity = player.getVelocity();
 				float playerVerticalSpeed = (float)(Math.abs(playerVelocity.y) - 0.04704000278472904);
 				float playerHorizontalSpeed = Math.abs(player.getMovementSpeed()) * (float)(Math.abs(playerVelocity.x) + Math.abs(playerVelocity.z));
 
-				player.sendMessage(Text.literal(Math.abs(playerVelocity.y) + " " + Math.abs(playerVelocity.x)));
+				float damageVertical = playerVerticalSpeed * DAMAGE_MULTIPLIER_VERTICAL;
+				float damageHorizontal = playerHorizontalSpeed * DAMAGE_MULTIPLIER_HORIZONTAL;
 
-				float damageVertical = playerVerticalSpeed * damageVerticalMultiplier;
-				float damageHorizontal = playerHorizontalSpeed * damageHorizontalMultiplier;
+				if (damageVertical > DAMAGE_MAX_VERTICAL)
+					damageVertical = DAMAGE_MAX_VERTICAL;
 
-				if (damageVertical > damageVerticalMax)
-					damageVertical = 50.0f;
-
-				if (damageHorizontalMax != -1 && damageHorizontal > damageHorizontalMax)
-					damageHorizontal = damageHorizontalMax;
+				if (DAMAGE_MAX_HORIZONTAL != -1 && damageHorizontal > DAMAGE_MAX_HORIZONTAL)
+					damageHorizontal = DAMAGE_MAX_HORIZONTAL;
 
 				float damageAmount = damageVertical + damageHorizontal;
 
-				float knockbackX = (float)playerVelocity.x * knockbackXMultiplier;
-				float knockbackY = (float)playerVelocity.y * knockbackYMultiplier;
-				float knockbackZ = (float)playerVelocity.z * knockbackZMultiplier;
+				float knockbackX = (float)playerVelocity.x * KNOCKBACK_MULTIPLIER_X;
+				float knockbackY = (float)playerVelocity.y * KNOCKBACK_MULTIPLIER_Y;
+				float knockbackZ = (float)playerVelocity.z * KNOCKBACK_MULTIPLIER_Z;
 
 				DamageSource entityDamageSource = world.getDamageSources().playerAttack(player);
 				entity.damage(entityDamageSource, damageAmount);
 				entity.setVelocity(knockbackX, knockbackY, knockbackZ);
 
-				if (debugLog)
+				if (DEBUG_LOG)
 					player.sendMessage(Text.literal(
-							  "Vertical: " + damageVertical + "\n" +
+							"Vertical: " + damageVertical + "\n" +
 									"Horizontal: " + damageHorizontal + "\n" +
 									"Damage: " + damageAmount + "\n"));
 			}
