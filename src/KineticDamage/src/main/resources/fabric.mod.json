@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "kineticdamage",
+	"version": "${version}",
+	"name": "KineticDamage",
+	"description": "A Minecraft mod that scales damage with kinetic energy.",
+	"authors": [
+		"o7q",
+		"weeg"
+	],
+	"contact": {
+		"homepage": "https://github.com/o7q",
+		"sources": "https://github.com/o7q/KineticDamage"
+	},
+	"license": "MIT",
+	"icon": "assets/kineticdamage/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.o7q.kineticdamage.KineticDamage"
+		],
+		"fabric-datagen": [
+			"com.o7q.kineticdamage.KineticDamageDataGenerator"
+		]
+	},
+	"mixins": [
+		"kineticdamage.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.3",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

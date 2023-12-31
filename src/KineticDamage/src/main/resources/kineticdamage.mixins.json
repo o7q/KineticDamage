@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "com.o7q.kineticdamage.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"ExampleMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
