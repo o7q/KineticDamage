@@ -15,50 +15,81 @@ import static com.o7q.kineticdamage.config.ModConfigs.*;
 
 public class KineticDamage implements ModInitializer {
 	public static final String MOD_ID = "kineticdamage";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	private final double Y_OFFSET = -0.0784000015258789D;
 
 	@Override
-	public void onInitialize()
-	{
+	public void onInitialize() {
 		ModConfigs.registerConfigs();
-
-
 
 		AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) ->
 		{
-			if (!world.isClient())
+			if (!world.isClient() && !player.isSpectator())
 			{
 				Vec3d playerVelocity = player.getVelocity();
-				float playerVerticalSpeed = (float)(Math.abs(playerVelocity.y) - 0.04704000278472904);
-				float playerHorizontalSpeed = Math.abs(player.getMovementSpeed()) * (float)(Math.abs(playerVelocity.x) + Math.abs(playerVelocity.z));
+				double playerBaseSpeed = player.getMovementSpeed();
+				double playerHeadYaw = player.getYaw();
 
-				float damageVertical = playerVerticalSpeed * DAMAGE_MULTIPLIER_VERTICAL;
-				float damageHorizontal = playerHorizontalSpeed * DAMAGE_MULTIPLIER_HORIZONTAL;
+				Vec3d entityVelocity = entity.getVelocity();
 
-				if (damageVertical > DAMAGE_MAX_VERTICAL)
-					damageVertical = DAMAGE_MAX_VERTICAL;
+				float playerSpeedXZMultiplier = 1f;
 
-				if (DAMAGE_MAX_HORIZONTAL != -1 && damageHorizontal > DAMAGE_MAX_HORIZONTAL)
-					damageHorizontal = DAMAGE_MAX_HORIZONTAL;
+				if (player.isSprinting())
+					playerSpeedXZMultiplier *= 2f;
+				if (player.isSwimming())
+					playerSpeedXZMultiplier *= 0.5f;
+				if (player.isSneaking())
+					playerSpeedXZMultiplier *= 0.5f;
+				if (player.isCrawling())
+					playerSpeedXZMultiplier *= 0.25f;
 
-				float damageAmount = damageVertical + damageHorizontal;
+				double playerSpeedX = (playerBaseSpeed + 1) * Math.abs((playerVelocity.x == 0 ? 1 : playerVelocity.x)) * playerSpeedXZMultiplier;
+				double playerSpeedZ = (playerBaseSpeed + 1) * Math.abs((playerVelocity.y == 0 ? 1 : playerVelocity.y)) * playerSpeedXZMultiplier;
+				double playerSpeedY = Math.abs(playerVelocity.y) + Y_OFFSET;
 
-				float knockbackX = (float)playerVelocity.x * KNOCKBACK_MULTIPLIER_X;
-				float knockbackY = (float)playerVelocity.y * KNOCKBACK_MULTIPLIER_Y;
-				float knockbackZ = (float)playerVelocity.z * KNOCKBACK_MULTIPLIER_Z;
+				Vec3d playerSpeed = new Vec3d(playerSpeedX, playerSpeedY, playerSpeedZ);
+
+				double damageAmount = CalculateDamage(playerSpeed);
+				Vec3d knockbackAmount = CalculateKnockback(entityVelocity, playerSpeed, playerVelocity.y, playerHeadYaw);
 
 				DamageSource entityDamageSource = world.getDamageSources().playerAttack(player);
-				entity.damage(entityDamageSource, damageAmount);
-				entity.setVelocity(knockbackX, knockbackY, knockbackZ);
+				entity.damage(entityDamageSource, (float)damageAmount);
+				entity.setVelocity(knockbackAmount);
 
 				if (DEBUG_LOG)
 					player.sendMessage(Text.literal(
-							"Vertical: " + damageVertical + "\n" +
-									"Horizontal: " + damageHorizontal + "\n" +
-									"Damage: " + damageAmount + "\n"));
+						"\n\n" +
+						"Speed:\n" +
+						"  X: " + playerSpeed.x + "\n" +
+						"  Y: " + playerSpeed.y + "\n" +
+						"  Z: " + playerSpeed.z + "\n" +
+						"  Base: " + playerBaseSpeed + "\n" +
+						"Knockback:\n" +
+						"  X: " + knockbackAmount.x + "\n" +
+						"  Y: " + knockbackAmount.y + "\n" +
+						"  Z: " + knockbackAmount.z + "\n" +
+						"Damage: " + damageAmount + "\n" +
+						"Yaw: " + playerHeadYaw
+					));
 			}
-
 			return ActionResult.PASS;
 		});
+	}
+
+	private double CalculateDamage(Vec3d playerSpeed) {
+		double damageXZ = (playerSpeed.x + playerSpeed.z) * DAMAGE_MULTIPLIER_HORIZONTAL;
+		double damageY = playerSpeed.y * DAMAGE_MULTIPLIER_VERTICAL;
+
+		return damageXZ + damageY;
+	}
+
+	private Vec3d CalculateKnockback(Vec3d entityVelocity, Vec3d playerSpeed, double playerVelocityY, double playerHeadYaw) {
+		double verticalSignum = Math.signum(playerVelocityY + Y_OFFSET);
+
+		double knockbackX = entityVelocity.x + Math.sin(Math.toRadians(-playerHeadYaw)) * playerSpeed.x * KNOCKBACK_MULTIPLIER_X;
+		double knockbackY = entityVelocity.y + (verticalSignum == 0 ? 1 : verticalSignum) * playerSpeed.y * KNOCKBACK_MULTIPLIER_Y;
+		double knockbackZ = entityVelocity.z + Math.cos(Math.toRadians(playerHeadYaw)) * playerSpeed.z * KNOCKBACK_MULTIPLIER_Z;
+
+		return new Vec3d(knockbackX, knockbackY, knockbackZ);
 	}
 }

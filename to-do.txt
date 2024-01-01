@@ -1,2 +1,1 @@
-- Fix horizontal velocity detection
 - Improve config
