@@ -19,7 +19,8 @@ public class KineticDamage implements ModInitializer {
 	private final double Y_OFFSET = -0.0784000015258789D;
 
 	@Override
-	public void onInitialize() {
+	public void onInitialize()
+	{
 		ConfigInit();
 
 		AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) ->
@@ -56,7 +57,7 @@ public class KineticDamage implements ModInitializer {
 				entity.damage(entityDamageSource, (float)damageAmount);
 				entity.setVelocity(knockbackAmount);
 
-				if (DEBUG_LOG)
+				if (DEBUG_CHAT_LOG)
 					player.sendMessage(Text.literal(
 						"\n\n" +
 						"Speed:\n" +
@@ -76,7 +77,8 @@ public class KineticDamage implements ModInitializer {
 		});
 	}
 
-	private double CalculateDamage(Vec3d playerSpeed) {
+	private double CalculateDamage(Vec3d playerSpeed)
+	{
 		double damageXZ = (playerSpeed.x + playerSpeed.z) * DAMAGE_MULTIPLIER_HORIZONTAL;
 		double damageY = playerSpeed.y * DAMAGE_MULTIPLIER_VERTICAL;
 
@@ -89,7 +91,8 @@ public class KineticDamage implements ModInitializer {
 		return damageXZ + damageY;
 	}
 
-	private Vec3d CalculateKnockback(Vec3d entityVelocity, Vec3d playerSpeed, double playerVelocityY, double playerHeadYaw) {
+	private Vec3d CalculateKnockback(Vec3d entityVelocity, Vec3d playerSpeed, double playerVelocityY, double playerHeadYaw)
+	{
 		double verticalSignum = Math.signum(playerVelocityY + Y_OFFSET);
 
 		double knockbackX = entityVelocity.x + Math.sin(Math.toRadians(-playerHeadYaw)) * playerSpeed.x * KNOCKBACK_MULTIPLIER_X;

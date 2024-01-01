@@ -4,7 +4,8 @@ import java.io.*;
 
 import static com.o7q.kineticdamage.config.ConfigValues.*;
 
-public class ConfigManager {
+public class ConfigManager
+{
     public static void ConfigInit()
     {
         File configFile = new File("config\\kineticdamage.properties");
@@ -48,7 +49,7 @@ public class ConfigManager {
 
                     # Debug
                     # Logs debug messages to the chat
-                    debug-log=false
+                    debug-chat-log=false
                     """;
 
             FileWriter configFileWriter = new FileWriter("config\\kineticdamage.properties");
@@ -111,8 +112,8 @@ public class ConfigManager {
                             ACTION_CRAWLING_MULTIPLIER = Float.parseFloat(configPair[1]);
                             break;
 
-                        case "debug-log":
-                            DEBUG_LOG = Boolean.parseBoolean(configPair[1]);
+                        case "debug-chat-log":
+                            DEBUG_CHAT_LOG = Boolean.parseBoolean(configPair[1]);
                             break;
                     }
                 }
