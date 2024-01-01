@@ -1,6 +1,5 @@
 package com.o7q.kineticdamage;
 
-import com.o7q.kineticdamage.config.ModConfigs;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
@@ -11,7 +10,8 @@ import net.minecraft.util.math.Vec3d;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.o7q.kineticdamage.config.ModConfigs.*;
+import static com.o7q.kineticdamage.config.ConfigManager.ConfigInit;
+import static com.o7q.kineticdamage.config.ConfigValues.*;
 
 public class KineticDamage implements ModInitializer {
 	public static final String MOD_ID = "kineticdamage";
@@ -20,7 +20,7 @@ public class KineticDamage implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ModConfigs.registerConfigs();
+		ConfigInit();
 
 		AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) ->
 		{
@@ -32,16 +32,16 @@ public class KineticDamage implements ModInitializer {
 
 				Vec3d entityVelocity = entity.getVelocity();
 
-				float playerSpeedXZMultiplier = 1f;
+				float playerSpeedXZMultiplier = 1.0f;
 
 				if (player.isSprinting())
-					playerSpeedXZMultiplier *= 2f;
+					playerSpeedXZMultiplier *= ACTION_SPRINTING_MULTIPLIER;
 				if (player.isSwimming())
-					playerSpeedXZMultiplier *= 0.5f;
+					playerSpeedXZMultiplier *= ACTION_SWIMMING_MULTIPLIER;
 				if (player.isSneaking())
-					playerSpeedXZMultiplier *= 0.5f;
+					playerSpeedXZMultiplier *= ACTION_SNEAKING_MULTIPLIER;
 				if (player.isCrawling())
-					playerSpeedXZMultiplier *= 0.25f;
+					playerSpeedXZMultiplier *= ACTION_CRAWLING_MULTIPLIER;
 
 				double playerSpeedX = (playerBaseSpeed + 1) * Math.abs((playerVelocity.x == 0 ? 1 : playerVelocity.x)) * playerSpeedXZMultiplier;
 				double playerSpeedZ = (playerBaseSpeed + 1) * Math.abs((playerVelocity.y == 0 ? 1 : playerVelocity.y)) * playerSpeedXZMultiplier;
@@ -79,6 +79,12 @@ public class KineticDamage implements ModInitializer {
 	private double CalculateDamage(Vec3d playerSpeed) {
 		double damageXZ = (playerSpeed.x + playerSpeed.z) * DAMAGE_MULTIPLIER_HORIZONTAL;
 		double damageY = playerSpeed.y * DAMAGE_MULTIPLIER_VERTICAL;
+
+		if (damageXZ > DAMAGE_MAX_HORIZONTAL && DAMAGE_MAX_HORIZONTAL > 0)
+			damageXZ = DAMAGE_MAX_HORIZONTAL;
+
+		if (damageY > DAMAGE_MAX_VERTICAL && DAMAGE_MAX_VERTICAL > 0)
+			damageY = DAMAGE_MAX_VERTICAL;
 
 		return damageXZ + damageY;
 	}
