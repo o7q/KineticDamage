@@ -30,6 +30,7 @@ public class KineticDamage implements ModInitializer {
 				Vec3d playerVelocity = player.getVelocity();
 				double playerBaseSpeed = player.getMovementSpeed();
 				double playerHeadYaw = player.getYaw();
+				double playerFallDistance = player.fallDistance;
 
 				Vec3d entityVelocity = entity.getVelocity();
 
@@ -49,7 +50,7 @@ public class KineticDamage implements ModInitializer {
 				double playerSpeedY = Math.abs(playerVelocity.y) + Y_OFFSET;
 				Vec3d playerSpeed = new Vec3d(playerSpeedX, playerSpeedY, playerSpeedZ);
 
-				double damageAmount = CalculateDamage(playerSpeed);
+				double damageAmount = CalculateDamage(playerSpeed, playerFallDistance);
 				Vec3d knockbackAmount = CalculateKnockback(entityVelocity, playerSpeed, playerVelocity.y, playerHeadYaw);
 
 				DamageSource entityDamageSource = world.getDamageSources().playerAttack(player);
@@ -76,10 +77,10 @@ public class KineticDamage implements ModInitializer {
 		});
 	}
 
-	private double CalculateDamage(Vec3d playerSpeed)
+	private double CalculateDamage(Vec3d playerSpeed, double playerFallDistance)
 	{
 		double damageXZ = (playerSpeed.x + playerSpeed.z) * DAMAGE_MULTIPLIER_HORIZONTAL;
-		double damageY = playerSpeed.y * DAMAGE_MULTIPLIER_VERTICAL;
+		double damageY = (playerSpeed.y + playerFallDistance) * DAMAGE_MULTIPLIER_VERTICAL;
 
 		if (damageXZ > DAMAGE_MAX_HORIZONTAL && DAMAGE_MAX_HORIZONTAL > 0)
 			damageXZ = DAMAGE_MAX_HORIZONTAL;

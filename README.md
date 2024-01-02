@@ -13,18 +13,18 @@ damage-multiplier-vertical=1.0
 damage-multiplier-horizontal=1.0
                     
 # Specify the max amount of damage that can be done
-# Negative numbers makes damage unlimited
+# Negative numbers will uncap the damage
 damage-max-vertical=100
 damage-max-horizontal=-1.0
 
 # Knockback multipliers
-# Scales the knockback with incoming damage velocity
+# Scales the knockback with attacker's incoming velocity
 knockback-multiplier-x=1.0
 knockback-multiplier-y=1.0
 knockback-multiplier-z=1.0
                     
 # Action multipliers
-# Scales damage and knockback depending on what the attacker's action is
+# Scales damage and knockback depending on the attacker's action
 action-sprinting-multiplier=2.0
 action-swimming-multiplier=0.5
 action-sneaking-multiplier=0.5
