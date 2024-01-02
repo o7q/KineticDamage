@@ -47,7 +47,6 @@ public class KineticDamage implements ModInitializer {
 				double playerSpeedX = (playerBaseSpeed + 1) * Math.abs((playerVelocity.x == 0 ? 1 : playerVelocity.x)) * playerSpeedXZMultiplier;
 				double playerSpeedZ = (playerBaseSpeed + 1) * Math.abs((playerVelocity.z == 0 ? 1 : playerVelocity.z)) * playerSpeedXZMultiplier;
 				double playerSpeedY = Math.abs(playerVelocity.y) + Y_OFFSET;
-
 				Vec3d playerSpeed = new Vec3d(playerSpeedX, playerSpeedY, playerSpeedZ);
 
 				double damageAmount = CalculateDamage(playerSpeed);
@@ -94,10 +93,11 @@ public class KineticDamage implements ModInitializer {
 	private Vec3d CalculateKnockback(Vec3d entityVelocity, Vec3d playerSpeed, double playerVelocityY, double playerHeadYaw)
 	{
 		double verticalSignum = Math.signum(playerVelocityY + Y_OFFSET);
+		verticalSignum = verticalSignum == 0 ? 1 : verticalSignum;
 
 		double knockbackX = entityVelocity.x + Math.sin(Math.toRadians(-playerHeadYaw)) * playerSpeed.x * KNOCKBACK_MULTIPLIER_X;
-		double knockbackY = entityVelocity.y + (verticalSignum == 0 ? 1 : verticalSignum) * playerSpeed.y * KNOCKBACK_MULTIPLIER_Y;
 		double knockbackZ = entityVelocity.z + Math.cos(Math.toRadians(playerHeadYaw)) * playerSpeed.z * KNOCKBACK_MULTIPLIER_Z;
+		double knockbackY = entityVelocity.y + verticalSignum * playerSpeed.y * KNOCKBACK_MULTIPLIER_Y;
 
 		return new Vec3d(knockbackX, knockbackY, knockbackZ);
 	}
