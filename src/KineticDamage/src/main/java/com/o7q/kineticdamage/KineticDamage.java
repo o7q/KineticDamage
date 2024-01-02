@@ -45,7 +45,7 @@ public class KineticDamage implements ModInitializer {
 					playerSpeedXZMultiplier *= ACTION_CRAWLING_MULTIPLIER;
 
 				double playerSpeedX = (playerBaseSpeed + 1) * Math.abs((playerVelocity.x == 0 ? 1 : playerVelocity.x)) * playerSpeedXZMultiplier;
-				double playerSpeedZ = (playerBaseSpeed + 1) * Math.abs((playerVelocity.y == 0 ? 1 : playerVelocity.y)) * playerSpeedXZMultiplier;
+				double playerSpeedZ = (playerBaseSpeed + 1) * Math.abs((playerVelocity.z == 0 ? 1 : playerVelocity.z)) * playerSpeedXZMultiplier;
 				double playerSpeedY = Math.abs(playerVelocity.y) + Y_OFFSET;
 
 				Vec3d playerSpeed = new Vec3d(playerSpeedX, playerSpeedY, playerSpeedZ);
