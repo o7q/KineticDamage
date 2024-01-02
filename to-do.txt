@@ -1,0 +1,1 @@
+- Fix horizontal movement detection (PLEASE HELP ME I CANNOT FIGURE IT OUT!)
