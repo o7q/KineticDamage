@@ -19,6 +19,9 @@
 		"main": [
 			"com.o7q.kineticdamage.KineticDamage"
 		],
+		"client": [
+			"com.o7q.kineticdamage.KineticDamageClient"
+		],
 		"fabric-datagen": [
 			"com.o7q.kineticdamage.KineticDamageDataGenerator"
 		]

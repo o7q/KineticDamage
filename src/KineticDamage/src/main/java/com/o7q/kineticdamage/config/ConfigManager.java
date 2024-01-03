@@ -42,10 +42,10 @@ public class ConfigManager
                     
                     # Action multipliers
                     # Scales damage and knockback depending on the attacker's action
-                    action-sprinting-multiplier=2.0
-                    action-swimming-multiplier=0.5
-                    action-sneaking-multiplier=0.5
-                    action-crawling-multiplier=0.25
+                    action-sprinting-multiplier=1.0
+                    action-swimming-multiplier=1.0
+                    action-sneaking-multiplier=1.0
+                    action-crawling-multiplier=1.0
 
                     # Debug
                     # Logs debug messages to the chat
