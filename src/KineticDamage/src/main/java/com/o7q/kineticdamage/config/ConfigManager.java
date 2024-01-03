@@ -31,7 +31,7 @@ public class ConfigManager
                     
                     # Specify the max amount of damage that can be done
                     # Negative numbers will uncap the damage
-                    damage-max-vertical=100
+                    damage-max-vertical=50
                     damage-max-horizontal=-1.0
 
                     # Knockback multipliers
@@ -42,21 +42,35 @@ public class ConfigManager
                     
                     # Action multipliers
                     # Scales damage and knockback depending on the attacker's action
-                    action-sprinting-multiplier=1.0
-                    action-swimming-multiplier=1.0
-                    action-sneaking-multiplier=1.0
-                    action-crawling-multiplier=1.0
+                    action-sprinting-multiplier=1.5
+                    action-swimming-multiplier=0.75
+                    action-sneaking-multiplier=0.5
+                    action-crawling-multiplier=0.25
                     
                     # Use player fall distance for damage
                     # The farther the player falls the more damage they will do
                     # Also, this damage will be added on top of the damage already done by the player's velocity
                     player-use-fall-distance=true
+                    # Damping function for player fall distance
+                    # This option will make the fall distance damage and knockback scale more slowly the longer the player falls
+                    # This is to make it so a player can't just jump off of a mountain and 1 tap any mob
+                    # I've also included some options to increase the damage the longer you fall (inverse-damping options)
+                    #
+                    # If you don't want to use any damping functions specify: none
+                    # DAMPING OPTIONS (by increasing strength):               sqrt, log_e, log, tanh
+                    # INVERSE-DAMPING OPTIONS (by increasing strength):       quadratic, cubic
+                    player-fall-distance-damping-function=sqrt
+                    # This value is multiplied to the fall distance before going into the damping function, it will be ignored if 'none' is set for the damping function
+                    player-fall-distance-damping-coefficient=8.0
+                    # This value is multiplied to the fall distance that's used to calculate downwards knockback
+                    # Lower values means lower downwards knockback
+                    player-fall-distance-downwards-knockback-coefficient=0.05
                     
                     # Use player head rotation vector for math
                     # This will use the player's head rotation instead of body velocity to calculate values
                     # If enabled, the server will always use the players head rotation vector to calculate knockback vectors instead of the velocity vector of the player itself
                     # In other words, the knockback will always occur in the direction the player is looking, this is not as realistic but it can be very fun
-                    player-use-head-rotation=true
+                    player-use-head-rotation=false
 
                     # Debug
                     # Logs debug messages to the chat (per player)
@@ -125,6 +139,16 @@ public class ConfigManager
 
                         case "player-use-fall-distance":
                             USE_PLAYER_FALL_DISTANCE_FOR_MATH = Boolean.parseBoolean(configPair[1]);
+                        case "player-fall-distance-damping-function":
+                            PLAYER_FALL_DISTANCE_DAMPING_FUNCTION = configPair[1];
+                            break;
+                        case "player-fall-distance-damping-coefficient":
+                            PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT = Float.parseFloat(configPair[1]);
+                            break;
+                        case "player-fall-distance-downwards-knockback-coefficient":
+                            PLAYER_FALL_DISTANCE_DOWNWARDS_KNOCKBACK_COEFFICIENT = Float.parseFloat(configPair[1]);
+                            break;
+
                         case "player-use-head-rotation":
                             USE_PLAYER_HEAD_ROTATION_FOR_MATH = Boolean.parseBoolean(configPair[1]);
                             break;

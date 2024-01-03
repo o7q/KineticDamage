@@ -47,13 +47,25 @@ public class AttackC2SPacket
         double playerHeadPitch = player.getPitch();
         double playerFallDistance = player.fallDistance;
 
+        double playerFallDistanceDamped = switch (PLAYER_FALL_DISTANCE_DAMPING_FUNCTION) {
+            case "sqrt" -> Math.sqrt(playerFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT);
+            case "log_e" -> Math.log1p(playerFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT);
+            case "log" -> Math.log10(playerFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT + 1);
+            case "tanh" -> Math.tanh(playerFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT);
+
+            case "quadratic" -> Math.pow(playerFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT, 2);
+            case "cubic" -> Math.pow(playerFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT, 3);
+
+            default -> playerFallDistance;
+        };
+
         ServerWorld world = player.getServerWorld();
 
         Entity entity = world.getEntityById(entityId);
         if (entity == null) return;
 
-        Vec3d knockbackAmount = CalculateEntityKnockback(entityVelocity, playerVelocity, playerHeadYaw, playerHeadPitch, playerFallDistance);
-        double damageAmount = CalculateEntityDamage(playerVelocity, playerFallDistance);
+        Vec3d knockbackAmount = CalculateEntityKnockback(entityVelocity, playerVelocity, playerHeadYaw, playerHeadPitch, playerFallDistanceDamped);
+        double damageAmount = CalculateEntityDamage(playerVelocity, playerFallDistanceDamped);
 
         DamageSource entityDamageSource = world.getDamageSources().playerAttack(player);
         entity.damage(entityDamageSource, (float)damageAmount);
@@ -62,11 +74,14 @@ public class AttackC2SPacket
         if (DEBUG_CHAT_LOG)
             player.sendMessage(Text.literal(
                     "\n" +
+                    "\n" +
                     "Velocity:\n" +
                     "  X: " + playerVelocity.x + "\n" +
                     "  Y: " + playerVelocity.y + "\n" +
                     "  Z: " + playerVelocity.z + "\n" +
                     "  Speed3D: " + playerSpeed3D + "\n" +
+                    "  Fall Distance: " + playerFallDistance + "\n" +
+                    "  Fall Distance (damped): " + playerFallDistanceDamped + "\n" +
                     "Yaw: " + playerHeadYaw + "\n" +
                     "Pitch: " + playerHeadPitch + "\n" +
                     "Knockback:\n" +
@@ -76,8 +91,7 @@ public class AttackC2SPacket
                     "Entity:\n" +
                     "  ID: " + entity.getId() + " (" + entity.getUuid() + ")\n" +
                     "  Name: " + entity.getName() + "\n" +
-                    "  Damage: " + damageAmount + "\n" +
-                    "\n"
+                    "  Damage: " + damageAmount
             ));
     }
 }

@@ -30,9 +30,13 @@ public class EntityMath
                 recipientVelocity.x + knockbackVector.x * KNOCKBACK_MULTIPLIER_X,
                 recipientVelocity.y + (
                         knockbackVector.y +
-                        (USE_PLAYER_FALL_DISTANCE_FOR_MATH ? attackerFallDistance * knockbackY_signum : 0)
+                        (USE_PLAYER_FALL_DISTANCE_FOR_MATH ? attackerFallDistance *
+                                knockbackY_signum *
+                                PLAYER_FALL_DISTANCE_DOWNWARDS_KNOCKBACK_COEFFICIENT :
+                                0
+                        )
                 ) * KNOCKBACK_MULTIPLIER_Y,
-                recipientVelocity.z + knockbackVector.z * KNOCKBACK_MULTIPLIER_X
+                recipientVelocity.z + knockbackVector.z * KNOCKBACK_MULTIPLIER_Z
         );
 
         return calculatedKnockback;
