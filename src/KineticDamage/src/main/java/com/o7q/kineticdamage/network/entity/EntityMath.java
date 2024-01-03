@@ -6,24 +6,49 @@ import static com.o7q.kineticdamage.config.ConfigValues.*;
 
 public class EntityMath
 {
-    protected static final double Y_OFFSET = -0.0784000015258789D;
-
-    public static Vec3d CalculateEntityKnockback(Vec3d recipientVelocity, Vec3d attackerSpeed, Vec3d attackerVelocity, double attackerHeadYaw)
+    public static Vec3d CalculateEntityKnockback(Vec3d recipientVelocity, Vec3d attackerVelocity, double attackerHeadYaw, double attackerHeadPitch, double attackerFallDistance)
     {
-        double verticalSignum = Math.signum(attackerVelocity.y + Y_OFFSET);
-        verticalSignum = verticalSignum == 0 ? 1 : verticalSignum;
+        Vec3d knockbackVector;
 
-        double knockbackX = recipientVelocity.x + Math.sin(Math.toRadians(-attackerHeadYaw)) * attackerSpeed.x * KNOCKBACK_MULTIPLIER_X;
-        double knockbackZ = recipientVelocity.z + Math.cos(Math.toRadians(attackerHeadYaw)) * attackerSpeed.z * KNOCKBACK_MULTIPLIER_Z;
-        double knockbackY = recipientVelocity.y + verticalSignum * attackerSpeed.y * KNOCKBACK_MULTIPLIER_Y;
+        if (USE_PLAYER_HEAD_ROTATION_FOR_MATH)
+            knockbackVector = new Vec3d(
+                    Math.sin(Math.toRadians(-attackerHeadYaw)) * Math.abs(attackerVelocity.x),
+                    Math.sin(Math.toRadians(-attackerHeadPitch)) * Math.abs(attackerVelocity.y),
+                    Math.cos(Math.toRadians(attackerHeadYaw)) * Math.abs(attackerVelocity.z)
+            );
 
-        return new Vec3d(knockbackX, knockbackY, knockbackZ);
+        else
+            knockbackVector = new Vec3d(
+                    attackerVelocity.x,
+                    attackerVelocity.y,
+                    attackerVelocity.z
+            );
+
+        Vec3d calculatedKnockback = new Vec3d(
+                recipientVelocity.x + knockbackVector.x * KNOCKBACK_MULTIPLIER_X,
+                recipientVelocity.y + (
+                        knockbackVector.y +
+                        (USE_PLAYER_FALL_DISTANCE_FOR_MATH ? attackerFallDistance : 0)
+                ) * KNOCKBACK_MULTIPLIER_Y,
+                recipientVelocity.z + knockbackVector.z * KNOCKBACK_MULTIPLIER_X
+        );
+
+        return calculatedKnockback;
     }
 
-    public static double CalculateEntityDamage(Vec3d attackerSpeed, double attackerFallDistance)
+    public static double CalculateEntityDamage(Vec3d attackerVelocity, double attackerFallDistance)
     {
+        Vec3d attackerSpeed = new Vec3d(
+                Math.abs(attackerVelocity.x),
+                Math.abs(attackerVelocity.y),
+                Math.abs(attackerVelocity.z)
+        );
+
         double damageXZ = (attackerSpeed.x + attackerSpeed.z) * DAMAGE_MULTIPLIER_HORIZONTAL;
-        double damageY = (attackerSpeed.y + attackerFallDistance) * DAMAGE_MULTIPLIER_VERTICAL;
+        double damageY = (
+                attackerSpeed.y +
+                (USE_PLAYER_FALL_DISTANCE_FOR_MATH ? attackerFallDistance : 0)
+        ) * DAMAGE_MULTIPLIER_VERTICAL;
 
         if (damageXZ > DAMAGE_MAX_HORIZONTAL && DAMAGE_MAX_HORIZONTAL > 0)
             damageXZ = DAMAGE_MAX_HORIZONTAL;

@@ -11,8 +11,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 
-import java.nio.ByteBuffer;
-
 import static com.o7q.kineticdamage.config.ConfigValues.*;
 import static com.o7q.kineticdamage.network.entity.EntityMath.*;
 
@@ -21,48 +19,44 @@ public class AttackC2SPacket
     public static void recieve(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
                                PacketByteBuf buf, PacketSender responseSender)
     {
-        // FIX THIS
-        // trying to figure out how to recieve multiple doubles from the client
+/*        Vec3d playerVelocity = player.getVelocity();
+        player.sendMessage(Text.literal("\n\n" + playerVelocity.x + "\n" + playerVelocity.y + "\n" + playerVelocity.z));*/
 
-        int entityId = buf.readInt();
-        double playerSpeedX = buf.readDouble();
-
-
-
-        player.sendMessage(Text.literal(String.valueOf(test2)));
-
-/*        float playerSpeedXZMultiplier = 1.0f;
+        float playerVelocityXZMultiplier = 1.0f;
         if (player.isSprinting())
-            playerSpeedXZMultiplier *= ACTION_SPRINTING_MULTIPLIER;
+            playerVelocityXZMultiplier *= ACTION_SPRINTING_MULTIPLIER;
         if (player.isSwimming())
-            playerSpeedXZMultiplier *= ACTION_SWIMMING_MULTIPLIER;
+            playerVelocityXZMultiplier *= ACTION_SWIMMING_MULTIPLIER;
         if (player.isSneaking())
-            playerSpeedXZMultiplier *= ACTION_SNEAKING_MULTIPLIER;
+            playerVelocityXZMultiplier *= ACTION_SNEAKING_MULTIPLIER;
         if (player.isCrawling())
-            playerSpeedXZMultiplier *= ACTION_CRAWLING_MULTIPLIER;
+            playerVelocityXZMultiplier *= ACTION_CRAWLING_MULTIPLIER;
 
-        ByteBuffer playerSpeedByteBuffer = ByteBuffer.wrap(buf.readByteArray());
-        double playerSpeedX = playerSpeedByteBuffer.getDouble() * playerSpeedXZMultiplier;
-        double playerSpeedY = playerSpeedByteBuffer.getDouble() * playerSpeedXZMultiplier;
-        double playerSpeedZ = playerSpeedByteBuffer.getDouble() * playerSpeedXZMultiplier;
+        // READ BUF (entityId -> entityVelocity -> playerVelocity)
+        int entityId = buf.readInt();
+        double entityVelocityX = buf.readDouble();
+        double entityVelocityY = buf.readDouble();
+        double entityVelocityZ = buf.readDouble();
+        Vec3d entityVelocity = new Vec3d(entityVelocityX, entityVelocityY, entityVelocityZ);
+
+        double playerVelocityX = buf.readDouble() * playerVelocityXZMultiplier;
+        double playerVelocityY = buf.readDouble() * playerVelocityXZMultiplier;
+        double playerVelocityZ = buf.readDouble() * playerVelocityXZMultiplier;
+        Vec3d playerVelocity = new Vec3d(playerVelocityX, playerVelocityY, playerVelocityZ);
+
+        double playerSpeed3D = CalculateEntity3DSpeed(playerVelocity);
+
+        double playerHeadYaw = player.getYaw();
+        double playerHeadPitch = player.getPitch();
+        double playerFallDistance = player.fallDistance;
 
         ServerWorld world = player.getServerWorld();
 
-        Vec3d playerSpeed = new Vec3d(playerSpeedX, playerSpeedY, playerSpeedZ);
-        Vec3d playerVelocity = player.getVelocity();
-        double playerHeadYaw = player.getYaw();
-        double playerFallDistance = player.fallDistance;
-
-        double playerSpeed3D = CalculateEntity3DSpeed(playerSpeed);
-
-        int entityId = buf.readVarInt();
         Entity entity = world.getEntityById(entityId);
         if (entity == null) return;
 
-        Vec3d entityVelocity = entity.getVelocity();
-
-        Vec3d knockbackAmount = CalculateEntityKnockback(entityVelocity, playerSpeed, playerVelocity, playerHeadYaw);
-        double damageAmount = CalculateEntityDamage(playerSpeed, playerFallDistance);
+        Vec3d knockbackAmount = CalculateEntityKnockback(entityVelocity, playerVelocity, playerHeadYaw, playerHeadPitch, playerFallDistance);
+        double damageAmount = CalculateEntityDamage(playerVelocity, playerFallDistance);
 
         DamageSource entityDamageSource = world.getDamageSources().playerAttack(player);
         entity.damage(entityDamageSource, (float)damageAmount);
@@ -71,11 +65,13 @@ public class AttackC2SPacket
         if (DEBUG_CHAT_LOG)
             player.sendMessage(Text.literal(
                     "\n" +
-                    "Speed:\n" +
-                    "  X: " + playerSpeed.x + "\n" +
-                    "  Y: " + playerSpeed.y + "\n" +
-                    "  Z: " + playerSpeed.z + "\n" +
-                    "  3D: " + playerSpeed3D + "\n" +
+                    "Velocity:\n" +
+                    "  X: " + playerVelocity.x + "\n" +
+                    "  Y: " + playerVelocity.y + "\n" +
+                    "  Z: " + playerVelocity.z + "\n" +
+                    "  Speed3D: " + playerSpeed3D + "\n" +
+                    "Yaw: " + playerHeadYaw + "\n" +
+                    "Pitch: " + playerHeadPitch + "\n" +
                     "Knockback:\n" +
                     "  X: " + knockbackAmount.x + "\n" +
                     "  Y: " + knockbackAmount.y + "\n" +
@@ -83,9 +79,8 @@ public class AttackC2SPacket
                     "Entity:\n" +
                     "  ID: " + entity.getId() + " (" + entity.getUuid() + ")\n" +
                     "  Name: " + entity.getName() + "\n" +
-                    "Damage: " + damageAmount + "\n" +
-                    "Yaw: " + playerHeadYaw +
+                    "  Damage: " + damageAmount + "\n" +
                     "\n"
-            ));*/
+            ));
     }
 }

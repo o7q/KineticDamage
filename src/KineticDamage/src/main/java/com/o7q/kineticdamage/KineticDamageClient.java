@@ -6,16 +6,10 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-
-import java.nio.ByteBuffer;
 
 public class KineticDamageClient implements ClientModInitializer
 {
-
-    public static final long PACKET_PRECISION = 1000;
-
     @Override
     public void onInitializeClient()
     {
@@ -25,22 +19,28 @@ public class KineticDamageClient implements ClientModInitializer
         {
             if (world.isClient())
             {
-                double playerSpeedX = player.getX() - player.prevX;
-                double playerSpeedY = player.getY() - player.prevY;
-                double playerSpeedZ = player.getZ() - player.prevZ;
-
-                // FIX THIS
-                // figure out how to send multiple doubles to the server for each playerSpeed axis
-
-                /*long[] playerSpeedPacked_buf = {(long)(playerSpeedX * PACKET_PRECISION), (long)(playerSpeedY * PACKET_PRECISION), (long)(playerSpeedZ * PACKET_PRECISION)};*/
-
+                // calculate each entity axis velocity, and get its ID
                 int entityId_buf = entity.getId();
+                double entityVelocityX_buf = entity.getX() - entity.prevX;
+                double entityVelocityY_buf = entity.getY() - entity.prevY;
+                double entityVelocityZ_buf = entity.getZ() - entity.prevZ;
 
+                // calculate each player axis velocity
+                double playerVelocityX_buf = player.getX() - player.prevX;
+                double playerVelocityY_buf = player.getY() - player.prevY;
+                double playerVelocityZ_buf = player.getZ() - player.prevZ;
+
+                // WRITE BUF (entityId -> entityVelocity -> playerVelocity)
                 PacketByteBuf buf = PacketByteBufs.create();
-                buf.writeVarInt(entityId_buf);
-                buf.writeDouble(playerSpeedX);
-                buf.writeDouble(playerSpeedY);
-                buf.writeDouble(playerSpeedZ);
+
+                buf.writeInt(entityId_buf);
+                buf.writeDouble(entityVelocityX_buf);
+                buf.writeDouble(entityVelocityY_buf);
+                buf.writeDouble(entityVelocityZ_buf);
+
+                buf.writeDouble(playerVelocityX_buf);
+                buf.writeDouble(playerVelocityY_buf);
+                buf.writeDouble(playerVelocityZ_buf);
 
                 ClientPlayNetworking.send(NetworkMessages.ATTACK_ID, buf);
             }
