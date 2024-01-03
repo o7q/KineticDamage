@@ -19,9 +19,6 @@ public class AttackC2SPacket
     public static void recieve(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
                                PacketByteBuf buf, PacketSender responseSender)
     {
-/*        Vec3d playerVelocity = player.getVelocity();
-        player.sendMessage(Text.literal("\n\n" + playerVelocity.x + "\n" + playerVelocity.y + "\n" + playerVelocity.z));*/
-
         float playerVelocityXZMultiplier = 1.0f;
         if (player.isSprinting())
             playerVelocityXZMultiplier *= ACTION_SPRINTING_MULTIPLIER;
