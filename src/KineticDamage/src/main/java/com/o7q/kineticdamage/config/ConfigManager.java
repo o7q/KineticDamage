@@ -55,7 +55,7 @@ public class ConfigManager
                     # Use player head rotation vector for math
                     # This will use the player's head rotation instead of body velocity to calculate values
                     # If enabled, the server will always use the players head rotation vector to calculate knockback vectors instead of the velocity vector of the player itself
-                    # In other words, the knockback will always occur in the direction the player is looking, this is not as realistic but it can be very fun.
+                    # In other words, the knockback will always occur in the direction the player is looking, this is not as realistic but it can be very fun
                     player-use-head-rotation=true
 
                     # Debug
