@@ -3,9 +3,9 @@
 # KineticDamage
 A Minecraft mod that scales damage and knockback with kinetic energy.
 
-<img src="assets/images/gifs/1.gif" width=80%>
-<img src="assets/images/gifs/2.gif" width=80%>
-<img src="assets/images/gifs/3.gif" width=80%>
+<img src="assets/images/gifs/1.gif" width=90%>
+<img src="assets/images/gifs/2.gif" width=90%>
+<img src="assets/images/gifs/3.gif" width=90%>
 
 # Configuration
 ```properties
