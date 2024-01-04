@@ -7,8 +7,6 @@ An easy-to-use, highly-configurable Minecraft mod that brings more realism to co
 
 ### *This mod is still in development and lots of new features are still being planned!*
 
-<br>
-
 ---
 
 # ✨ Features
@@ -31,9 +29,6 @@ An easy-to-use, highly-configurable Minecraft mod that brings more realism to co
     <img src="assets/images/gifs/5.gif" width=90%>
 
 ---
-
-<br>
-<br>
 
 # ⚙️ Configuration
 ### This is the default configuration file for KineticDamage. It contains an explanation for every configurable option and acts as the tutorial.
@@ -103,8 +98,6 @@ debug-chat-log=false
 ### 🥰 The idea and name for this mod came from my friend [**weeg**](https://github.com/weegb).
 
 ---
-
-<br>
 
 **KineticDamage**\
 Written in Java for Minecraft Fabric
