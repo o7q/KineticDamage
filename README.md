@@ -13,17 +13,17 @@ It is designed around compatibility with many other mods.
 # ✨ Features
 
 - ## ⚔️ Damage scaling
-    - ### This mod features a highly configurable damage scaling system that changes how Minecraft deals damage to mobs.
-    - <img src="assets/images/gifs/1.gif" width=90%>
-    - <img src="assets/images/gifs/2.gif" width=90%>
+    ### This mod features a highly configurable damage scaling system that changes how Minecraft deals damage to mobs.
+    <img src="assets/images/gifs/1.gif" width=90%>
+    <img src="assets/images/gifs/2.gif" width=90%>
 
 ---
 
 - ## 💨 Knockback scaling
-    - ### You can also configure how energy is transfered from yourself to other entities.
-    - <img src="assets/images/gifs/3.gif" width=90%>
+    ### You can also configure how energy is transfered from yourself to other entities.
+    <img src="assets/images/gifs/3.gif" width=90%>
 
-    - *(knockback scaled up in config for display purposes only)*
+    *(knockback scaled up in config for display purposes only)*
 
 ---
 
