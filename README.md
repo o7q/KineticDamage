@@ -3,7 +3,7 @@
 ---
 
 # KineticDamage
-An easy-to-use, highly-configurable Minecraft mod that brings more realism to combat by scaling damage and knockback with kinetic energy. It is designed around compatibility with many other mods.
+An easy-to-use, highly-configurable Minecraft mod that brings more realism to combat by scaling damage and knockback with kinetic energy. It is also designed around compatibility with many other mods.
 
 ### *This mod is still in development and lots of new features are still being planned!*
 
