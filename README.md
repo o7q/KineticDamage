@@ -1,21 +1,44 @@
 <img src="assets/images/icon/icon_shadow.png" width=40%>
 
-# KineticDamage
-A highly-configurable Minecraft mod that scales damage and knockback with kinetic energy. \
-It is compatible with many other mods.
+---
 
-<br>
+# KineticDamage
+An easy-to-use, highly-configurable Minecraft mod that brings more realism to combat by scaling damage and knockback with kinetic energy. \
+It is designed around compatibility with many other mods.
 
 ### *This mod is still in development and lots of new features are still being planned!*
 
-<img src="assets/images/gifs/1.gif" width=90%>
-<img src="assets/images/gifs/2.gif" width=90%>
-<img src="assets/images/gifs/3.gif" width=90%>
+---
+
+# ✨ Features
+
+---
+
+- ## ⚔️ Damage scaling
+    - ### This mod features a highly configurable damage scaling system that changes how Minecraft deals damage to mobs.
+    - <img src="assets/images/gifs/1.gif" width=90%>
+    - <img src="assets/images/gifs/2.gif" width=90%>
+
+---
 
 <br>
 <br>
 
-# Configuration
+---
+
+- ## 💨 Knockback scaling
+    - ### You can also configure how energy is transfered from yourself to other entities.
+    - <img src="assets/images/gifs/3.gif" width=90%>
+
+    - *(knockback scaled up in config for display purposes only)*
+
+---
+
+<br>
+<br>
+
+# ⚙️ Configuration
+### This is the default configuration file for KineticDamage. It contains explanations for every confiurable option
 ```properties
 # KineticDamage config
 
@@ -71,3 +94,7 @@ player-use-head-rotation=false
 # Logs debug messages to the chat (per player)
 debug-chat-log=false
 ```
+
+<br>
+
+**KineticDamage**
