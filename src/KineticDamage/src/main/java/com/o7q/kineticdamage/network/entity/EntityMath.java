@@ -65,6 +65,23 @@ public class EntityMath
         return damageXZ + damageY;
     }
 
+    public static double CalculateEntityDampedDistance(double entityFallDistance)
+    {
+        double entityFallDistanceDamped = switch (PLAYER_FALL_DISTANCE_DAMPING_FUNCTION) {
+            case "sqrt" -> Math.sqrt(entityFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT);
+            case "log_e" -> Math.log1p(entityFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT);
+            case "log" -> Math.log10(entityFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT + 1);
+            case "tanh" -> Math.tanh(entityFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT);
+
+            case "quadratic" -> Math.pow(entityFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT, 2);
+            case "cubic" -> Math.pow(entityFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT, 3);
+
+            default -> entityFallDistance;
+        };
+
+        return entityFallDistanceDamped;
+    }
+
     public static double CalculateEntity3DSpeed(Vec3d entitySpeed)
     {
         return Math.sqrt(

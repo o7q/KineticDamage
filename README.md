@@ -28,7 +28,7 @@ It is designed around compatibility with many other mods.
 ---
 
 # ⚙️ Configuration
-### This is the default configuration file for KineticDamage. It contains explanations for every confiurable option
+### This is the default configuration file for KineticDamage. It contains explanations for every configurable option and acts as the tutorial.
 ```properties
 # KineticDamage config
 
@@ -90,4 +90,4 @@ debug-chat-log=false
 <br>
 
 **KineticDamage**\
-Written in Java for FabricMC in IntelliJ.
+Written in Java for FabricMC.

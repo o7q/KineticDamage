@@ -48,18 +48,7 @@ public class AttackC2SPacket
         double playerHeadYaw = player.getYaw();
         double playerHeadPitch = player.getPitch();
         double playerFallDistance = player.fallDistance;
-
-        double playerFallDistanceDamped = switch (PLAYER_FALL_DISTANCE_DAMPING_FUNCTION) {
-            case "sqrt" -> Math.sqrt(playerFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT);
-            case "log_e" -> Math.log1p(playerFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT);
-            case "log" -> Math.log10(playerFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT + 1);
-            case "tanh" -> Math.tanh(playerFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT);
-
-            case "quadratic" -> Math.pow(playerFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT, 2);
-            case "cubic" -> Math.pow(playerFallDistance * PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT, 3);
-
-            default -> playerFallDistance;
-        };
+        double playerFallDistanceDamped = CalculateEntityDampedDistance(playerFallDistance);
 
         ServerWorld world = player.getServerWorld();
 

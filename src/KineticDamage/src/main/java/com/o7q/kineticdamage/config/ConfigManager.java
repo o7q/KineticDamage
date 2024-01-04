@@ -30,7 +30,7 @@ public class ConfigManager
     {
         try
         {
-            LOGGER.info("Attempting to create a default config.");
+            LOGGER.info("Attempting to create a default config...");
 
             String defaultConfig =
                     """
@@ -103,7 +103,7 @@ public class ConfigManager
     {
         try (BufferedReader reader = new BufferedReader(new FileReader("config\\kineticdamage.properties")))
         {
-            LOGGER.info("Attempting to read the config.");
+            LOGGER.info("Attempting to read the config...");
 
             String line;
             while ((line = reader.readLine()) != null)
