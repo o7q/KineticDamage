@@ -3,11 +3,21 @@ package com.o7q.kineticdamage.config;
 import java.io.*;
 
 import static com.o7q.kineticdamage.config.ConfigValues.*;
+import static com.o7q.kineticdamage.KineticDamage.LOGGER;
 
 public class ConfigManager
 {
     public static void ConfigInit()
     {
+        File configFolder = new File("config");
+        if (!configFolder.exists())
+        {
+            if (configFolder.mkdirs())
+                LOGGER.info("Created root config folder successfully!");
+            else
+                LOGGER.error("Unable to create root config folder!");
+        }
+
         File configFile = new File("config\\kineticdamage.properties");
 
         if (!configFile.exists())
@@ -20,6 +30,8 @@ public class ConfigManager
     {
         try
         {
+            LOGGER.info("Attempting to create a default config.");
+
             String defaultConfig =
                     """
                     # KineticDamage config
@@ -83,7 +95,7 @@ public class ConfigManager
         }
         catch (IOException e)
         {
-            System.out.println("Unable to create config!");
+            LOGGER.error("Unable to create config!");
         }
     }
 
@@ -91,6 +103,8 @@ public class ConfigManager
     {
         try (BufferedReader reader = new BufferedReader(new FileReader("config\\kineticdamage.properties")))
         {
+            LOGGER.info("Attempting to read the config.");
+
             String line;
             while ((line = reader.readLine()) != null)
             {

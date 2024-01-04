@@ -1,8 +1,11 @@
-<img src="assets/icon/icon_shadow.png" width=40%>
+<img src="assets/images/icon/icon_shadow.png" width=40%>
 
 # KineticDamage
-A Minecraft mod that scales damage and knockback with kinetic energy.\
-*This mod is still in development.*
+A Minecraft mod that scales damage and knockback with kinetic energy.
+
+<img src="assets/images/gifs/1.gif">
+<img src="assets/images/gifs/2.gif">
+<img src="assets/images/gifs/3.gif">
 
 # Configuration
 ```properties

@@ -1,0 +1,2 @@
+- Add particle effect options
+- Add sound effect options

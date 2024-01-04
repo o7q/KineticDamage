@@ -8,12 +8,16 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.ActionResult;
 
+import static com.o7q.kineticdamage.KineticDamage.LOGGER;
+
 public class KineticDamageClient implements ClientModInitializer
 {
     @Override
     public void onInitializeClient()
     {
         NetworkMessages.registerS2CPackets();
+
+        LOGGER.info("KineticDamageClient is online!");
 
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) ->
         {

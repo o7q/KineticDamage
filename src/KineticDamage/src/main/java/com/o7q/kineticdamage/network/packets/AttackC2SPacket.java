@@ -14,6 +14,8 @@ import net.minecraft.util.math.Vec3d;
 import static com.o7q.kineticdamage.config.ConfigValues.*;
 import static com.o7q.kineticdamage.network.entity.EntityMath.*;
 
+import static com.o7q.kineticdamage.KineticDamage.LOGGER;
+
 public class AttackC2SPacket
 {
     public static void recieve(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
@@ -62,7 +64,11 @@ public class AttackC2SPacket
         ServerWorld world = player.getServerWorld();
 
         Entity entity = world.getEntityById(entityId);
-        if (entity == null) return;
+        if (entity == null)
+        {
+            LOGGER.error(player.getName() + ": Entity is null!");
+            return;
+        }
 
         Vec3d knockbackAmount = CalculateEntityKnockback(entityVelocity, playerVelocity, playerHeadYaw, playerHeadPitch, playerFallDistanceDamped);
         double damageAmount = CalculateEntityDamage(playerVelocity, playerFallDistanceDamped);
@@ -72,7 +78,8 @@ public class AttackC2SPacket
         entity.setVelocity(knockbackAmount);
 
         if (DEBUG_CHAT_LOG)
-            player.sendMessage(Text.literal(
+        {
+            String debugMessage =
                     "\n" +
                     "\n" +
                     "Velocity:\n" +
@@ -91,7 +98,10 @@ public class AttackC2SPacket
                     "Entity:\n" +
                     "  ID: " + entity.getId() + " (" + entity.getUuid() + ")\n" +
                     "  Name: " + entity.getName() + "\n" +
-                    "  Damage: " + damageAmount
-            ));
+                    "  Damage: " + damageAmount;
+
+            LOGGER.info(debugMessage);
+            player.sendMessage(Text.literal(debugMessage));
+        }
     }
 }
