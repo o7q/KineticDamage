@@ -1,4 +1,5 @@
 - Add a 'linear' damping function option
+- Add a constant term option for the damping functions
 - Add particle effect options
 - Add sound effect options
 
