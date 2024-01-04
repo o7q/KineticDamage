@@ -3,10 +3,11 @@
 ---
 
 # KineticDamage
-An easy-to-use, highly-configurable Minecraft mod that brings more realism to combat by scaling damage and knockback with kinetic energy. \
-It is designed around compatibility with many other mods.
+An easy-to-use, highly-configurable Minecraft mod that brings more realism to combat by scaling damage and knockback with kinetic energy. It is designed around compatibility with many other mods.
 
 ### *This mod is still in development and lots of new features are still being planned!*
+
+<br>
 
 ---
 
@@ -23,12 +24,19 @@ It is designed around compatibility with many other mods.
     ### You can also configure how energy is transfered from yourself to other entities.
     <img src="assets/images/gifs/3.gif" width=90%>
 
-    *(knockback scaled up in config for display purposes only)*
+    <br>
+
+    ### Highly compatible with other mods, here are some examples with [**ULTRACRAFT**](https://github.com/absolutelyaya/ultracraft).
+    <img src="assets/images/gifs/4.gif" width=90%>
+    <img src="assets/images/gifs/5.gif" width=90%>
 
 ---
 
+<br>
+<br>
+
 # ⚙️ Configuration
-### This is the default configuration file for KineticDamage. It contains explanations for every configurable option and acts as the tutorial.
+### This is the default configuration file for KineticDamage. It contains an explanation for every configurable option and acts as the tutorial.
 ```properties
 # KineticDamage config
 
@@ -92,7 +100,11 @@ debug-chat-log=false
 
 ---
 
+### 🥰 The idea and name for this mod came from my friend [**weeg**](https://github.com/weegb).
+
+---
+
 <br>
 
 **KineticDamage**\
-Written in Java for FabricMC.
+Written in Java for Minecraft Fabric
