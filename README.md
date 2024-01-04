@@ -12,17 +12,10 @@ It is designed around compatibility with many other mods.
 
 # ✨ Features
 
----
-
 - ## ⚔️ Damage scaling
     - ### This mod features a highly configurable damage scaling system that changes how Minecraft deals damage to mobs.
     - <img src="assets/images/gifs/1.gif" width=90%>
     - <img src="assets/images/gifs/2.gif" width=90%>
-
----
-
-<br>
-<br>
 
 ---
 
@@ -33,9 +26,6 @@ It is designed around compatibility with many other mods.
     - *(knockback scaled up in config for display purposes only)*
 
 ---
-
-<br>
-<br>
 
 # ⚙️ Configuration
 ### This is the default configuration file for KineticDamage. It contains explanations for every confiurable option
@@ -95,6 +85,9 @@ player-use-head-rotation=false
 debug-chat-log=false
 ```
 
+---
+
 <br>
 
-**KineticDamage**
+**KineticDamage**\
+Written in Java for FabricMC in IntelliJ.
