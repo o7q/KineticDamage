@@ -39,7 +39,7 @@ damage-multiplier-horizontal=1.0
                     
 # Specify the max amount of damage that can be done
 # Negative numbers will uncap the damage
-damage-max-vertical=50
+damage-max-vertical=50.0
 damage-max-horizontal=-1.0
 
 # Knockback multipliers
@@ -47,14 +47,19 @@ damage-max-horizontal=-1.0
 knockback-multiplier-x=1.0
 knockback-multiplier-y=1.0
 knockback-multiplier-z=1.0
-                    
+
 # Action multipliers
 # Scales damage and knockback depending on the attacker's action
 action-sprinting-multiplier=1.5
 action-swimming-multiplier=0.75
 action-sneaking-multiplier=0.5
 action-crawling-multiplier=0.25
-                    
+
+# Should the entity's velocity by completely overwritten by the new calculated velocity?
+# By default, the new calculated velocity is added to the entities original velocity, this is much more realistic
+# If enabled, all original entity velocity will be ignored and overwritten by the new calculated velocity
+entity-ignore-original-velocity=false
+
 # Use player fall distance for damage
 # The farther the player falls the more damage they will do
 # Also, this damage will be added on top of the damage already done by the player's velocity
@@ -73,7 +78,7 @@ player-fall-distance-damping-coefficient=8.0
 # This value is multiplied to the fall distance that's used to calculate downwards knockback
 # Lower values means lower downwards knockback
 player-fall-distance-downwards-knockback-coefficient=0.05
-                    
+
 # Use player head rotation vector for math
 # This will use the player's head rotation instead of body velocity to calculate values
 # If enabled, the server will always use the players head rotation vector to calculate knockback vectors instead of the velocity vector of the player itself

@@ -24,11 +24,15 @@ public class EntityMath
                     attackerVelocity.z
             );
 
+        int entityBaseVelocityMultiplier = 1;
+        if (ENTITY_IGNORE_ORIGINAL_VELOCITY)
+            entityBaseVelocityMultiplier = 0;
+
         double knockbackY_signum = Math.signum(attackerVelocity.y);
 
         Vec3d calculatedKnockback = new Vec3d(
-                recipientVelocity.x + knockbackVector.x * KNOCKBACK_MULTIPLIER_X,
-                recipientVelocity.y + (
+                recipientVelocity.x * entityBaseVelocityMultiplier + knockbackVector.x * KNOCKBACK_MULTIPLIER_X,
+                recipientVelocity.y * entityBaseVelocityMultiplier + (
                         knockbackVector.y +
                         (USE_PLAYER_FALL_DISTANCE_FOR_MATH ? attackerFallDistance *
                                 knockbackY_signum *
@@ -36,7 +40,7 @@ public class EntityMath
                                 0
                         )
                 ) * KNOCKBACK_MULTIPLIER_Y,
-                recipientVelocity.z + knockbackVector.z * KNOCKBACK_MULTIPLIER_Z
+                recipientVelocity.z * entityBaseVelocityMultiplier + knockbackVector.z * KNOCKBACK_MULTIPLIER_Z
         );
 
         return calculatedKnockback;

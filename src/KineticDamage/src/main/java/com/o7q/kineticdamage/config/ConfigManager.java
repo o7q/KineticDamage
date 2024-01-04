@@ -43,7 +43,7 @@ public class ConfigManager
                     
                     # Specify the max amount of damage that can be done
                     # Negative numbers will uncap the damage
-                    damage-max-vertical=50
+                    damage-max-vertical=50.0
                     damage-max-horizontal=-1.0
 
                     # Knockback multipliers
@@ -58,6 +58,11 @@ public class ConfigManager
                     action-swimming-multiplier=0.75
                     action-sneaking-multiplier=0.5
                     action-crawling-multiplier=0.25
+                    
+                    # Should the entity's velocity by completely overwritten by the new calculated velocity?
+                    # By default, the new calculated velocity is added to the entities original velocity, this is much more realistic
+                    # If enabled, all original entity velocity will be ignored and overwritten by the new calculated velocity
+                    entity-ignore-original-velocity=false
                     
                     # Use player fall distance for damage
                     # The farther the player falls the more damage they will do
@@ -149,6 +154,10 @@ public class ConfigManager
                             break;
                         case "action-crawling-multiplier":
                             ACTION_CRAWLING_MULTIPLIER = Float.parseFloat(configPair[1]);
+                            break;
+
+                        case "entity-ignore-original-velocity":
+                            ENTITY_IGNORE_ORIGINAL_VELOCITY = Boolean.parseBoolean(configPair[1]);
                             break;
 
                         case "player-use-fall-distance":
