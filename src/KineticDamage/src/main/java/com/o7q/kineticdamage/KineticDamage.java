@@ -1,6 +1,7 @@
 package com.o7q.kineticdamage;
 
 import com.o7q.kineticdamage.network.NetworkMessages;
+import com.o7q.kineticdamage.network.events.Attack.AttackDirectHandler;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ public class KineticDamage implements ModInitializer {
 	public void onInitialize()
 	{
 		ConfigInit();
+		AttackDirectHandler.register();
 		NetworkMessages.registerC2SPackets();
 
 		LOGGER.info("KineticDamage is online!");

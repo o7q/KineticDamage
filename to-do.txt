@@ -1,2 +1,3 @@
+- Fix mod compatibility issues with hit registration
 - Add particle effect options
 - Add sound effect options

@@ -1,7 +1,7 @@
 package com.o7q.kineticdamage.network;
 
 import com.o7q.kineticdamage.KineticDamage;
-import com.o7q.kineticdamage.network.packets.AttackC2SPacket;
+import com.o7q.kineticdamage.network.packets.AttackC2SPacket.AttackServer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.util.Identifier;
 
@@ -11,7 +11,7 @@ public class NetworkMessages
 
     public static void registerC2SPackets()
     {
-        ServerPlayNetworking.registerGlobalReceiver(ATTACK_ID, AttackC2SPacket::recieve);
+        ServerPlayNetworking.registerGlobalReceiver(ATTACK_ID, AttackServer::recieve);
     }
 
     public static void registerS2CPackets()

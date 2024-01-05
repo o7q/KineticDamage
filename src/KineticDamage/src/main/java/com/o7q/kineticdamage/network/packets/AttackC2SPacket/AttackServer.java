@@ -1,4 +1,4 @@
-package com.o7q.kineticdamage.network.packets;
+package com.o7q.kineticdamage.network.packets.AttackC2SPacket;
 
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.entity.Entity;
@@ -12,11 +12,14 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 
 import static com.o7q.kineticdamage.config.ConfigValues.*;
-import static com.o7q.kineticdamage.network.entity.EntityMath.*;
 
 import static com.o7q.kineticdamage.KineticDamage.LOGGER;
+import static com.o7q.kineticdamage.network.math.entity.Entity3DSpeed.CalculateEntity3DSpeed;
+import static com.o7q.kineticdamage.network.math.entity.EntityDamage.CalculateEntityDamage;
+import static com.o7q.kineticdamage.network.math.entity.EntityDampedDistance.CalculateEntityDampedDistance;
+import static com.o7q.kineticdamage.network.math.entity.EntityKnockback.CalculateEntityKnockback;
 
-public class AttackC2SPacket
+public class AttackServer
 {
     public static void recieve(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
                                PacketByteBuf buf, PacketSender responseSender)

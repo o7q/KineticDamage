@@ -70,6 +70,10 @@ public class ConfigManager
                     # In other words, the knockback will always occur in the direction the player is looking, this is not as realistic but it can be very fun
                     player-use-head-rotation=false
                     
+                    # Use the client-side direct hit registration rather than the regular attack callback
+                    # Only enable this if you are having mod compatibility issues
+                    player-use-direct-hit-registration=false
+                    
                     # Should the entity's velocity by completely overwritten by the new calculated velocity?
                     # By default, the new calculated velocity is added to the entities original velocity, this is much more realistic
                     # If enabled, all original entity velocity will be ignored and overwritten by the new calculated velocity
