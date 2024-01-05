@@ -2,14 +2,11 @@ package com.o7q.kineticdamage.network.math.entity;
 
 import static com.o7q.kineticdamage.config.ConfigValues.*;
 
-public class EntityDampedDistance
-{
-    public static double CalculateEntityDampedDistance(double entityFallDistance)
-    {
+public class EntityDampedDistance {
+    public static double calculateEntityDampedDistance(double entityFallDistance) {
         double entityFallDistanceDamped;
 
-        switch (PLAYER_FALL_DISTANCE_DAMPING_FUNCTION)
-        {
+        switch (PLAYER_FALL_DISTANCE_DAMPING_FUNCTION) {
             case "linear":
                 entityFallDistanceDamped =
                         entityFallDistance *

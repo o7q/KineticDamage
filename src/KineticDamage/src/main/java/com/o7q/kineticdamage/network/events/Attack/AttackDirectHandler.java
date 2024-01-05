@@ -1,43 +1,35 @@
 package com.o7q.kineticdamage.network.events.Attack;
 
+import com.o7q.kineticdamage.mixin.KeyBindingAccessor;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.Text;
 import net.minecraft.util.hit.EntityHitResult;
-import org.lwjgl.glfw.GLFW;
+import net.minecraft.world.World;
 
-public class AttackDirectHandler
-{
-    public static final String KEY_CATEGORY_TEST = "key.category.kineticdamage.test";
-    public static final String TEST_KEY = "key.kineticdamage.test_key";
+import static com.o7q.kineticdamage.network.packets.AttackC2SPacket.AttackClient.sendAttackC2SPacket;
+import static com.o7q.kineticdamage.KineticDamage.LOGGER;
 
-    public static KeyBinding testKey;
+public class AttackDirectHandler {
+    public static void registerAttackDirectHandler() {
+        ClientTickEvents.START_CLIENT_TICK.register(client -> {
+            PlayerEntity player = client.player;
+            if (player != null) {
+                int attackKeyTimesPressed = ((KeyBindingAccessor) client.options.attackKey).getTimesPressed();
+                if (attackKeyTimesPressed > 0) {
+                    if (client.crosshairTarget instanceof EntityHitResult playerCrosshairTarget) {
+                        Entity entity = playerCrosshairTarget.getEntity();
+                        World world = player.getWorld();
 
-    public static void registerAttackDirectHandler()
-    {
-        ClientTickEvents.END_CLIENT_TICK.register(client ->{
-            if (testKey.wasPressed())
-            {
-                PlayerEntity player = client.player;
-                if (client.crosshairTarget instanceof EntityHitResult entityCrosshairTarget)
-                {
-                    player.sendMessage(Text.literal("HELLO " + entityCrosshairTarget.getEntity().getName() + "!"));
+                        if (world == null) {
+                            LOGGER.error("(registerAttackDirectHandler) " + player.getName() + ": World is null!");
+                            return;
+                        }
+
+                        sendAttackC2SPacket(world, player, entity);
+                    }
                 }
             }
         });
-    }
-
-    public static void register()
-    {
-        testKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                TEST_KEY,
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_Z,
-                KEY_CATEGORY_TEST
-        ));
-        registerAttackDirectHandler();
     }
 }

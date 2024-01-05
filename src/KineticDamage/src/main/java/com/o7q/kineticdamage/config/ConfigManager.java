@@ -7,29 +7,27 @@ import static com.o7q.kineticdamage.KineticDamage.LOGGER;
 
 public class ConfigManager
 {
-    public static void ConfigInit()
+    public static void configInit()
     {
         File configFolder = new File("config");
         if (!configFolder.exists())
         {
             if (configFolder.mkdirs())
-                LOGGER.info("Created root config folder successfully!");
+                LOGGER.info("(configInit) Created root config folder successfully!");
             else
-                LOGGER.error("Unable to create root config folder!");
+                LOGGER.error("(configInit) Unable to create root config folder!");
         }
 
         File configFile = new File("config\\kineticdamage.properties");
 
         if (!configFile.exists())
-            CreateDefaultConfig();
+            createDefaultConfig();
 
-        ReadConfig();
+        readConfig();
     }
 
-    private static void CreateDefaultConfig()
-    {
-        try
-        {
+    private static void createDefaultConfig() {
+        try {
             LOGGER.info("Attempting to create a default config...");
 
             String defaultConfig =
@@ -70,9 +68,9 @@ public class ConfigManager
                     # In other words, the knockback will always occur in the direction the player is looking, this is not as realistic but it can be very fun
                     player-use-head-rotation=false
                     
-                    # Use the client-side direct hit registration rather than the regular attack callback
-                    # Only enable this if you are having mod compatibility issues
-                    player-use-direct-hit-registration=false
+                    # Use the mixin attack registration rather than the standard attack callback
+                    # Only enable this if you are having mod compatibility issue (ex. BetterCombat, or other combat based mods that may interfere)
+                    player-use-mixin-hit-registration=false
                     
                     # Should the entity's velocity by completely overwritten by the new calculated velocity?
                     # By default, the new calculated velocity is added to the entities original velocity, this is much more realistic
@@ -114,28 +112,21 @@ public class ConfigManager
             FileWriter configFileWriter = new FileWriter("config\\kineticdamage.properties");
             configFileWriter.write(defaultConfig);
             configFileWriter.close();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             LOGGER.error("Unable to create config!");
         }
     }
 
-    private static void ReadConfig()
-    {
-        try (BufferedReader reader = new BufferedReader(new FileReader("config\\kineticdamage.properties")))
-        {
-            LOGGER.info("Attempting to read the config...");
+    private static void readConfig() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("config\\kineticdamage.properties"))) {
+            LOGGER.info("(readConfig) Attempting to read the config...");
 
             String line;
-            while ((line = reader.readLine()) != null)
-            {
-                if (!line.isEmpty() && line.charAt(0) != '#')
-                {
+            while ((line = reader.readLine()) != null) {
+                if (!line.isEmpty() && line.charAt(0) != '#') {
                     String[] configPair = line.split("=", -1);
 
-                    switch (configPair[0])
-                    {
+                    switch (configPair[0]) {
                         case "damage-multiplier-vertical":
                             DAMAGE_MULTIPLIER_VERTICAL = Float.parseFloat(configPair[1]);
                             break;
@@ -181,6 +172,10 @@ public class ConfigManager
                             USE_PLAYER_HEAD_ROTATION_FOR_MATH = Boolean.parseBoolean(configPair[1]);
                             break;
 
+                        case "player-use-direct-hit-registration":
+                            USE_PLAYER_MIXIN_HIT_REGISTRATION = Boolean.parseBoolean(configPair[1]);
+                            break;
+
                         case "entity-ignore-original-velocity":
                             ENTITY_IGNORE_ORIGINAL_VELOCITY = Boolean.parseBoolean(configPair[1]);
                             break;
@@ -210,10 +205,8 @@ public class ConfigManager
                     }
                 }
             }
-        }
-        catch (IOException e)
-        {
-            System.out.println("Unable to read config!");
+        } catch (IOException e) {
+            System.out.println("(readConfig) Unable to read config!");
         }
     }
 }

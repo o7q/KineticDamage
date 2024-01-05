@@ -4,10 +4,8 @@ import net.minecraft.util.math.Vec3d;
 
 import static com.o7q.kineticdamage.config.ConfigValues.*;
 
-public class EntityKnockback
-{
-    public static Vec3d CalculateEntityKnockback(Vec3d recipientVelocity, Vec3d attackerVelocity, double attackerHeadYaw, double attackerHeadPitch, double attackerFallDistance)
-    {
+public class EntityKnockback {
+    public static Vec3d calculateEntityKnockback(Vec3d recipientVelocity, Vec3d attackerVelocity, double attackerHeadYaw, double attackerHeadPitch, double attackerFallDistance) {
         Vec3d knockbackVector;
 
         if (USE_PLAYER_HEAD_ROTATION_FOR_MATH)

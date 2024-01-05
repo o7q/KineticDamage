@@ -14,16 +14,14 @@ import net.minecraft.util.math.Vec3d;
 import static com.o7q.kineticdamage.config.ConfigValues.*;
 
 import static com.o7q.kineticdamage.KineticDamage.LOGGER;
-import static com.o7q.kineticdamage.network.math.entity.Entity3DSpeed.CalculateEntity3DSpeed;
-import static com.o7q.kineticdamage.network.math.entity.EntityDamage.CalculateEntityDamage;
-import static com.o7q.kineticdamage.network.math.entity.EntityDampedDistance.CalculateEntityDampedDistance;
-import static com.o7q.kineticdamage.network.math.entity.EntityKnockback.CalculateEntityKnockback;
+import static com.o7q.kineticdamage.network.math.entity.Entity3DSpeed.calculateEntity3DSpeed;
+import static com.o7q.kineticdamage.network.math.entity.EntityDamage.calculateEntityDamage;
+import static com.o7q.kineticdamage.network.math.entity.EntityDampedDistance.calculateEntityDampedDistance;
+import static com.o7q.kineticdamage.network.math.entity.EntityKnockback.calculateEntityKnockback;
 
-public class AttackServer
-{
+public class AttackServer {
     public static void recieve(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
-                               PacketByteBuf buf, PacketSender responseSender)
-    {
+                               PacketByteBuf buf, PacketSender responseSender) {
         float playerVelocityXZMultiplier = 1.0f;
         if (player.isSprinting())
             playerVelocityXZMultiplier *= ACTION_SPRINTING_MULTIPLIER;
@@ -46,34 +44,33 @@ public class AttackServer
         double playerVelocityZ = buf.readDouble() * playerVelocityXZMultiplier;
         Vec3d playerVelocity = new Vec3d(playerVelocityX, playerVelocityY, playerVelocityZ);
 
-        double playerSpeed3D = CalculateEntity3DSpeed(playerVelocity);
+        double playerSpeed3D = calculateEntity3DSpeed(playerVelocity);
 
         double playerHeadYaw = player.getYaw();
         double playerHeadPitch = player.getPitch();
         double playerFallDistance = player.fallDistance;
-        double playerFallDistanceDamped = CalculateEntityDampedDistance(playerFallDistance);
+        double playerFallDistanceDamped = calculateEntityDampedDistance(playerFallDistance);
 
         ServerWorld world = player.getServerWorld();
 
         Entity entity = world.getEntityById(entityId);
-        if (entity == null)
-        {
-            LOGGER.error(player.getName() + ": Entity is null!");
+        if (entity == null) {
+            LOGGER.error("(AttackC2SPacket.server) " + player.getName() + ": Entity is null!");
             return;
         }
 
-        Vec3d knockbackAmount = CalculateEntityKnockback(entityVelocity, playerVelocity, playerHeadYaw, playerHeadPitch, playerFallDistanceDamped);
-        double damageAmount = CalculateEntityDamage(playerVelocity, playerFallDistanceDamped);
+        Vec3d knockbackAmount = calculateEntityKnockback(entityVelocity, playerVelocity, playerHeadYaw, playerHeadPitch, playerFallDistanceDamped);
+        double damageAmount = calculateEntityDamage(playerVelocity, playerFallDistanceDamped);
 
         DamageSource entityDamageSource = world.getDamageSources().playerAttack(player);
         entity.damage(entityDamageSource, (float)damageAmount);
         entity.setVelocity(knockbackAmount);
 
-        if (DEBUG_CHAT_LOG)
-        {
+        if (DEBUG_CHAT_LOG) {
             String debugMessage =
                     "\n" +
                     "\n" +
+                    "Using Direct Hit Register?: " + USE_PLAYER_DIRECT_HIT_REGISTRATION + "\n" +
                     "Velocity:\n" +
                     "  X: " + playerVelocity.x + "\n" +
                     "  Y: " + playerVelocity.y + "\n" +
@@ -92,7 +89,6 @@ public class AttackServer
                     "  Name: " + entity.getName() + "\n" +
                     "  Damage: " + damageAmount;
 
-            LOGGER.info(debugMessage);
             player.sendMessage(Text.literal(debugMessage));
         }
     }

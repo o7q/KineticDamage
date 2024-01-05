@@ -1,7 +1,6 @@
 package com.o7q.kineticdamage.config;
 
-public class ConfigValues
-{
+public class ConfigValues {
     public static float DAMAGE_MULTIPLIER_VERTICAL = 1.0f;
     public static float DAMAGE_MULTIPLIER_HORIZONTAL = 1.0f;
 
@@ -21,7 +20,7 @@ public class ConfigValues
 
     public static boolean USE_PLAYER_HEAD_ROTATION_FOR_MATH = false;
 
-    public static boolean USE_PLAYER_DIRECT_HIT_REGISTRATION = false;
+    public static boolean USE_PLAYER_MIXIN_HIT_REGISTRATION = false;
 
     public static boolean ENTITY_IGNORE_ORIGINAL_VELOCITY = false;
 

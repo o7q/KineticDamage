@@ -3,11 +3,9 @@ package com.o7q.kineticdamage.network.math.entity;
 import net.minecraft.util.math.Vec3d;
 
 import static com.o7q.kineticdamage.config.ConfigValues.*;
-import static com.o7q.kineticdamage.config.ConfigValues.DAMAGE_MAX_VERTICAL;
 
-public class EntityDamage
-{
-    public static double CalculateEntityDamage(Vec3d attackerVelocity, double attackerFallDistance) {
+public class EntityDamage {
+    public static double calculateEntityDamage(Vec3d attackerVelocity, double attackerFallDistance) {
         Vec3d attackerSpeed = new Vec3d(
                 Math.abs(attackerVelocity.x),
                 Math.abs(attackerVelocity.y),

@@ -8,12 +8,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.world.World;
 
-public class AttackClient
-{
-    public static void SendAttackC2SPacket(World world, PlayerEntity player, Entity entity)
-    {
-        if (world.isClient())
-        {
+public class AttackClient {
+    public static void sendAttackC2SPacket(World world, PlayerEntity player, Entity entity) {
+        if (world.isClient()) {
             // calculate each entity axis velocity, and get its ID
             int entityId_buf = entity.getId();
             double entityVelocityX_buf = entity.getX() - entity.prevX;
