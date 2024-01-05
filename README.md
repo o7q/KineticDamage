@@ -69,9 +69,10 @@ player-use-fall-distance=true
 # In other words, the knockback will always occur in the direction the player is looking, this is not as realistic but it can be very fun
 player-use-head-rotation=false
 
-# Use the mixin attack registration rather than the standard attack callback
-# Only enable this if you are having mod compatibility issue (ex. BetterCombat, or other combat based mods that may interfere)
-player-use-mixin-hit-registration=false
+# Use the direct attack register rather than the standard attack callback
+# This is calculated client-side using a mixin
+# I only recommend you enable this if you are having mod compatibility issue (ex. BetterCombat, or other combat based mods that may interfere)
+player-use-direct-hit-register=false
 
 # Should the entity's velocity by completely overwritten by the new calculated velocity?
 # By default, the new calculated velocity is added to the entities original velocity, this is much more realistic

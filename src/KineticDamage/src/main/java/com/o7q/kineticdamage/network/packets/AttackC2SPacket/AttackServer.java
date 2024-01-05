@@ -70,7 +70,7 @@ public class AttackServer {
             String debugMessage =
                     "\n" +
                     "\n" +
-                    "Using Direct Hit Register?: " + USE_PLAYER_DIRECT_HIT_REGISTRATION + "\n" +
+                    "Direct/Mixin Hit: " + USE_PLAYER_DIRECT_HIT_REGISTRATION + "\n" +
                     "Velocity:\n" +
                     "  X: " + playerVelocity.x + "\n" +
                     "  Y: " + playerVelocity.y + "\n" +
