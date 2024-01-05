@@ -25,7 +25,7 @@ public class ConfigValues {
     public static boolean ENTITY_IGNORE_ORIGINAL_VELOCITY = false;
 
     public static String PLAYER_FALL_DISTANCE_DAMPING_FUNCTION = "sqrt";
-    public static float PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT = 8.0f;
+    public static float PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT = 10.0f;
     public static float PLAYER_FALL_DISTANCE_DAMPING_CONSTANT_1 = 0.0f;
     public static float PLAYER_FALL_DISTANCE_DAMPING_CONSTANT_2 = 0.0f;
     public static boolean PLAYER_FALL_DISTANCE_DAMPING_SQRT_AUTO_CLAMP = true;

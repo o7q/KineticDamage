@@ -31,8 +31,8 @@ public class EntityKnockback {
         Vec3d calculatedKnockback = new Vec3d(
                 recipientVelocity.x * entityBaseVelocityMultiplier + knockbackVector.x * KNOCKBACK_MULTIPLIER_X,
                 recipientVelocity.y * entityBaseVelocityMultiplier + (
-                        knockbackVector.y +
-                                (USE_PLAYER_FALL_DISTANCE_FOR_MATH ? attackerFallDistance *
+                        knockbackVector.y + (
+                                USE_PLAYER_FALL_DISTANCE_FOR_MATH ? attackerFallDistance *
                                         knockbackY_signum *
                                         PLAYER_FALL_DISTANCE_DOWNWARDS_KNOCKBACK_COEFFICIENT :
                                         0

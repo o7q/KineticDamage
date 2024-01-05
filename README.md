@@ -91,7 +91,7 @@ entity-ignore-original-velocity=false
 # Note: 'none' is the same as 'linear', except that linear will use the coefficient and constant values in it's calculation
 player-fall-distance-damping-function=sqrt
 # This value is multiplied to the fall distance before going into the damping function, it will be ignored if 'none' is set for the damping function
-player-fall-distance-damping-coefficient=8.0
+player-fall-distance-damping-coefficient=10.0
 # Horizontal shift factor, example: f(x) = FUNC(AX + K1 <-) + K2
 player-fall-distance-damping-constant-1=0.0
 # Vertical shift factor, example: f(x) = FUNC(AX + K1) + K2 <-
