@@ -1,7 +1,2 @@
-- Add a 'linear' damping function option
-- Add a constant term options for the damping functions
 - Add particle effect options
 - Add sound effect options
-
-README:
-- Add height differences fall damage demonstration

@@ -17,14 +17,18 @@ public class ConfigValues
     public static float ACTION_SNEAKING_MULTIPLIER = 0.5f;
     public static float ACTION_CRAWLING_MULTIPLIER = 0.25f;
 
-    public static boolean ENTITY_IGNORE_ORIGINAL_VELOCITY = false;
-
     public static boolean USE_PLAYER_FALL_DISTANCE_FOR_MATH = true;
-    public static String PLAYER_FALL_DISTANCE_DAMPING_FUNCTION = "sqrt";
-    public static float PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT = 8.0f;
-    public static float PLAYER_FALL_DISTANCE_DOWNWARDS_KNOCKBACK_COEFFICIENT = 0.05f;
 
     public static boolean USE_PLAYER_HEAD_ROTATION_FOR_MATH = false;
+
+    public static boolean ENTITY_IGNORE_ORIGINAL_VELOCITY = false;
+
+    public static String PLAYER_FALL_DISTANCE_DAMPING_FUNCTION = "sqrt";
+    public static float PLAYER_FALL_DISTANCE_DAMPING_COEFFICIENT = 8.0f;
+    public static float PLAYER_FALL_DISTANCE_DAMPING_CONSTANT_1 = 0.0f;
+    public static float PLAYER_FALL_DISTANCE_DAMPING_CONSTANT_2 = 0.0f;
+    public static boolean PLAYER_FALL_DISTANCE_DAMPING_SQRT_AUTO_CLAMP = true;
+    public static float PLAYER_FALL_DISTANCE_DOWNWARDS_KNOCKBACK_COEFFICIENT = 0.05f;
 
     public static boolean DEBUG_CHAT_LOG = false;
 }
