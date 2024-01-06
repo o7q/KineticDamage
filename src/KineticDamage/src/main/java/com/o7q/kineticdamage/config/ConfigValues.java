@@ -20,7 +20,7 @@ public class ConfigValues {
 
     public static boolean USE_PLAYER_HEAD_ROTATION_FOR_MATH = false;
 
-    public static boolean USE_PLAYER_DIRECT_HIT_REGISTRATION = false;
+    public static boolean USE_PLAYER_DIRECT_HIT_REGISTRATION = true;
 
     public static boolean ENTITY_IGNORE_ORIGINAL_VELOCITY = false;
 

@@ -1,4 +1,4 @@
-package com.o7q.kineticdamage.network.math.entity;
+package com.o7q.kineticdamage.math.entity;
 
 import static com.o7q.kineticdamage.config.ConfigValues.*;
 

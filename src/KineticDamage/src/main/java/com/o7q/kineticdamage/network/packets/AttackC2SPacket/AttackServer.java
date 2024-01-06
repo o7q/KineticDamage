@@ -14,10 +14,10 @@ import net.minecraft.util.math.Vec3d;
 import static com.o7q.kineticdamage.config.ConfigValues.*;
 
 import static com.o7q.kineticdamage.KineticDamage.LOGGER;
-import static com.o7q.kineticdamage.network.math.entity.Entity3DSpeed.calculateEntity3DSpeed;
-import static com.o7q.kineticdamage.network.math.entity.EntityDamage.calculateEntityDamage;
-import static com.o7q.kineticdamage.network.math.entity.EntityDampedDistance.calculateEntityDampedDistance;
-import static com.o7q.kineticdamage.network.math.entity.EntityKnockback.calculateEntityKnockback;
+import static com.o7q.kineticdamage.math.entity.Entity3DSpeed.calculateEntity3DSpeed;
+import static com.o7q.kineticdamage.math.entity.EntityDamage.calculateEntityDamage;
+import static com.o7q.kineticdamage.math.entity.EntityDampedDistance.calculateEntityDampedDistance;
+import static com.o7q.kineticdamage.math.entity.EntityKnockback.calculateEntityKnockback;
 
 public class AttackServer {
     public static void recieve(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,

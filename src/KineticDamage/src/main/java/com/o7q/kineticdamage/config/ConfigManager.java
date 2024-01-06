@@ -2,12 +2,13 @@ package com.o7q.kineticdamage.config;
 
 import java.io.*;
 
+import static com.o7q.kineticdamage.KineticDamage.MOD_VERSION;
 import static com.o7q.kineticdamage.config.ConfigValues.*;
 import static com.o7q.kineticdamage.KineticDamage.LOGGER;
 
 public class ConfigManager
 {
-    public static void configInit()
+    public static int configInit()
     {
         File configFolder = new File("config");
         if (!configFolder.exists())
@@ -23,17 +24,21 @@ public class ConfigManager
         if (!configFile.exists())
             createDefaultConfig();
 
-        readConfig();
+        return readConfig();
     }
 
-    private static void createDefaultConfig() {
+    public static void createDefaultConfig() {
         try {
-            LOGGER.info("Attempting to create a default config...");
+            LOGGER.info("(createDefaultConfig) Attempting to create a default config...");
 
             String defaultConfig =
                     """
                     # KineticDamage config
-
+                    # Comment out 'version' with '#' if you do not want the config to regenerate on version change
+                    version=""" + MOD_VERSION +
+                    """
+                    
+                    
                     # Damage multipliers
                     # These values will be multiplied with the calculated damage values
                     damage-multiplier-vertical=1.0
@@ -68,10 +73,10 @@ public class ConfigManager
                     # In other words, the knockback will always occur in the direction the player is looking, this is not as realistic but it can be very fun
                     player-use-head-rotation=false
                     
-                    # Use the direct attack register rather than the standard attack callback
-                    # This is calculated client-side using a mixin
-                    # I only recommend you enable this if you are having mod compatibility issue (ex. BetterCombat, or other combat based mods that may interfere)
-                    player-use-direct-hit-register=false
+                    # Use the direct attack register rather than the standard attack callback (calculated client-side using a mixin)
+                    # This option is useful if you are having mod compatibility issue (ex. BetterCombat, or other combat based mods that may interfere with KineticDamage)
+                    # Disable this if you are having de-syncing issues
+                    player-use-direct-hit-register=true
                     
                     # Should the entity's velocity by completely overwritten by the new calculated velocity?
                     # By default, the new calculated velocity is added to the entities original velocity, this is much more realistic
@@ -118,7 +123,7 @@ public class ConfigManager
         }
     }
 
-    private static void readConfig() {
+    public static int readConfig() {
         try (BufferedReader reader = new BufferedReader(new FileReader("config\\kineticdamage.properties"))) {
             LOGGER.info("(readConfig) Attempting to read the config...");
 
@@ -128,6 +133,16 @@ public class ConfigManager
                     String[] configPair = line.split("=", -1);
 
                     switch (configPair[0]) {
+                        case "version":
+                            if (!MOD_VERSION.equals(configPair[1]))
+                            {
+                                LOGGER.warn("(readConfig) Detected log/mod version inconsistency.");
+                                createDefaultConfig();
+                                readConfig();
+                                return 0;
+                            }
+                            break;
+
                         case "damage-multiplier-vertical":
                             DAMAGE_MULTIPLIER_VERTICAL = Float.parseFloat(configPair[1]);
                             break;
@@ -206,8 +221,13 @@ public class ConfigManager
                     }
                 }
             }
+
+            LOGGER.info("(readConfig) Successfully read the config!");
+
+            return 1;
         } catch (IOException e) {
-            System.out.println("(readConfig) Unable to read config!");
+            LOGGER.info("(readConfig) Unable to read config!");
+            return -1;
         }
     }
 }
