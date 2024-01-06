@@ -37,12 +37,14 @@ An easy-to-use, highly-configurable Minecraft mod that brings more realism to co
 ### This is the default configuration file for KineticDamage. It contains an explanation for every configurable option and acts as the tutorial.
 ```properties
 # KineticDamage config
+# Comment out 'version' with '#' if you do not want the config to regenerate on version change
+version=1.0.0_beta1
 
 # Damage multipliers
 # These values will be multiplied with the calculated damage values
 damage-multiplier-vertical=1.0
 damage-multiplier-horizontal=1.0
-                    
+
 # Specify the max amount of damage that can be done
 # Negative numbers will uncap the damage
 damage-max-vertical=50.0
@@ -72,10 +74,10 @@ player-use-fall-distance=true
 # In other words, the knockback will always occur in the direction the player is looking, this is not as realistic but it can be very fun
 player-use-head-rotation=false
 
-# Use the direct attack register rather than the standard attack callback
-# This is calculated client-side using a mixin
-# I only recommend you enable this if you are having mod compatibility issue (ex. BetterCombat, or other combat based mods that may interfere)
-player-use-direct-hit-register=false
+# Use the direct attack register rather than the standard attack callback (calculated client-side using a mixin)
+# This option is useful if you are having mod compatibility issue (ex. BetterCombat, or other combat based mods that may interfere with KineticDamage)
+# Disable this if you are having de-syncing issues
+player-use-direct-hit-register=true
 
 # Should the entity's velocity by completely overwritten by the new calculated velocity?
 # By default, the new calculated velocity is added to the entities original velocity, this is much more realistic
