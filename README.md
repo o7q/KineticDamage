@@ -41,7 +41,7 @@ That's it! For now... 🙂
 ---
 
 # ⚙️ Configuration
-### This is the default configuration file for KineticDamage. It contains an explanation for every configurable option and acts as the tutorial.
+### This is the default configuration file for KineticDamage. It contains an explanation for every configurable option and acts as the guide.
 ```properties
 # KineticDamage config
 # Comment out 'version' with '#' if you do not want the config to regenerate on version change
