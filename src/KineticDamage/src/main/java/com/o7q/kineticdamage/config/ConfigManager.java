@@ -42,7 +42,7 @@ public class ConfigManager
                     # Damage multipliers
                     # These values will be multiplied with the calculated damage values
                     damage-multiplier-vertical=1.0
-                    damage-multiplier-horizontal=1.0
+                    damage-multiplier-horizontal=2.0
                     
                     # Specify the max amount of damage that can be done
                     # Negative numbers will uncap the damage
@@ -51,9 +51,9 @@ public class ConfigManager
 
                     # Knockback multipliers
                     # Scales the knockback with attacker's incoming velocity
-                    knockback-multiplier-x=1.0
+                    knockback-multiplier-x=2.0
                     knockback-multiplier-y=1.0
-                    knockback-multiplier-z=1.0
+                    knockback-multiplier-z=2.0
                     
                     # Action multipliers
                     # Scales damage and knockback depending on the attacker's action
@@ -137,8 +137,6 @@ public class ConfigManager
                             if (!MOD_VERSION.equals(configPair[1]))
                             {
                                 LOGGER.warn("(readConfig) Detected log/mod version inconsistency.");
-                                createDefaultConfig();
-                                readConfig();
                                 return 0;
                             }
                             break;

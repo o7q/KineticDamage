@@ -2,14 +2,14 @@ package com.o7q.kineticdamage.config;
 
 public class ConfigValues {
     public static float DAMAGE_MULTIPLIER_VERTICAL = 1.0f;
-    public static float DAMAGE_MULTIPLIER_HORIZONTAL = 1.0f;
+    public static float DAMAGE_MULTIPLIER_HORIZONTAL = 2.0f;
 
     public static float DAMAGE_MAX_VERTICAL = 50.0f;
     public static float DAMAGE_MAX_HORIZONTAL = -1.0f;
 
-    public static float KNOCKBACK_MULTIPLIER_X = 1.0f;
+    public static float KNOCKBACK_MULTIPLIER_X = 2.0f;
     public static float KNOCKBACK_MULTIPLIER_Y = 1.0f;
-    public static float KNOCKBACK_MULTIPLIER_Z = 1.0f;
+    public static float KNOCKBACK_MULTIPLIER_Z = 2.0f;
 
     public static float ACTION_SPRINTING_MULTIPLIER = 1.5f;
     public static float ACTION_SWIMMING_MULTIPLIER = 0.75f;
