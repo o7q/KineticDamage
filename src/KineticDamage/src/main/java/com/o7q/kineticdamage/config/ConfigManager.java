@@ -118,12 +118,22 @@ public class ConfigManager
             FileWriter configFileWriter = new FileWriter("config\\kineticdamage.properties");
             configFileWriter.write(defaultConfig);
             configFileWriter.close();
+
+            LOGGER.info("(ConfigManager.createDefaultConfig) Successfully created the default config!");
         } catch (IOException e) {
             LOGGER.error("Unable to create config!");
         }
     }
 
     public static int readConfig() {
+        File configFile = new File("config\\kineticdamage.properties");
+
+        if (!configFile.exists())
+        {
+            LOGGER.warn("(ConfigManager.readConfig) Config does not exist! Creating...");
+            createDefaultConfig();
+        }
+
         try (BufferedReader reader = new BufferedReader(new FileReader("config\\kineticdamage.properties"))) {
             LOGGER.info("(ConfigManager.readConfig) Attempting to read the config...");
 
