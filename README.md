@@ -24,9 +24,12 @@ An easy-to-use, highly-configurable Minecraft mod that brings more realism to co
 
     <br>
 
-    ### Highly compatible with other mods, here are some examples with [**ULTRACRAFT**](https://github.com/absolutelyaya/ultracraft).
+    ### Highly compatible with other mods, here are some examples with [**ULTRACRAFT**](https://github.com/absolutelyaya/ultracraft)
     <img src="assets/images/gifs/4.gif" width=90%>
     <img src="assets/images/gifs/5.gif" width=90%>
+
+    ### Example with [**BetterCombat**](https://github.com/ZsoltMolnarrr/BetterCombat)
+    <img src="assets/images/gifs/6.gif" width=90%>
 
 ---
 

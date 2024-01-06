@@ -173,7 +173,7 @@ public class ConfigManager
                             USE_PLAYER_HEAD_ROTATION_FOR_MATH = Boolean.parseBoolean(configPair[1]);
                             break;
 
-                        case "player-use-direct-hit-registration":
+                        case "player-use-direct-hit-register":
                             USE_PLAYER_DIRECT_HIT_REGISTRATION = Boolean.parseBoolean(configPair[1]);
                             break;
 
