@@ -6,7 +6,7 @@
 An easy-to-use, highly-configurable Minecraft mod that brings more realism to combat by scaling damage and knockback with kinetic energy. It is also designed around compatibility with many other mods.
 
 ## *This mod is still in development and lots of new features are still being planned!*
-### If you have a problem or found a bug please create an [issue](https://github.com/o7q/KineticDamage/issues) or message me on Discord! (username: o7q) 😊
+### If you have a feature request or found a bug please create an [issue](https://github.com/o7q/KineticDamage/issues) or message me on Discord! (username: o7q) 😊
 
 ---
 
@@ -31,6 +31,12 @@ An easy-to-use, highly-configurable Minecraft mod that brings more realism to co
 
     ### Example with [**BetterCombat**](https://github.com/ZsoltMolnarrr/BetterCombat)
     <img src="assets/images/gifs/6.gif" width=90%>
+
+---
+
+# 📜 Commands
+- ### `/kineticdamage reload` *reloads the config*
+That's it! For now... 🙂
 
 ---
 
