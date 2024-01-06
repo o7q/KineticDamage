@@ -18,6 +18,6 @@ public class KineticDamageClient implements ClientModInitializer {
         else
             registerAttackCallbackHandler();
 
-        LOGGER.info("(onInitializeClient) KineticDamage is online!");
+        LOGGER.info("(KineticDamage.onInitializeClient) KineticDamageClient is online!");
     }
 }

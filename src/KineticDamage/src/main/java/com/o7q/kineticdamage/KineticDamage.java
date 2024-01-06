@@ -21,6 +21,6 @@ public class KineticDamage implements ModInitializer {
 		registerCommands();
 		NetworkMessages.registerC2SPackets();
 
-		LOGGER.info("(onInitialize) KineticDamage is online!");
+		LOGGER.info("(KineticDamage.onInitialize) KineticDamageMain is online!");
 	}
 }

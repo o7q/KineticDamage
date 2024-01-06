@@ -55,7 +55,7 @@ public class AttackServer {
 
         Entity entity = world.getEntityById(entityId);
         if (entity == null) {
-            LOGGER.error("(AttackC2SPacket.server) " + player.getName() + ": Entity is null!");
+            LOGGER.error("(AttackServer.recieve) " + player.getName() + ": Entity is null!");
             return;
         }
 

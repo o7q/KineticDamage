@@ -22,7 +22,7 @@ public class AttackDirectHandler {
                         World world = player.getWorld();
 
                         if (world == null) {
-                            LOGGER.error("(registerAttackDirectHandler) " + player.getName() + ": World is null!");
+                            LOGGER.error("(AttackDirectHandler.registerAttackDirectHandler) " + player.getName() + ": World is null!");
                             return;
                         }
 
