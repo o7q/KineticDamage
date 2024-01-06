@@ -32,6 +32,9 @@ An easy-to-use, highly-configurable Minecraft mod that brings more realism to co
     ### Example with [**BetterCombat**](https://github.com/ZsoltMolnarrr/BetterCombat)
     <img src="assets/images/gifs/6.gif" width=90%>
 
+    ### Example with an elytra
+    <img src="assets/images/gifs/7.gif" width=90%>
+
 ---
 
 # 📜 Commands
