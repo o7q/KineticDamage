@@ -20,7 +20,7 @@ An easy-to-use, highly-configurable Minecraft mod that brings more realism to co
 ---
 
 - ## 💨 Knockback scaling
-    ### You can also configure how energy is transfered from yourself to other entities.
+    ### You can also configure how energy is transferred from yourself to other entities.
     <img src="assets/images/gifs/3.gif" width=90%>
 
     <br>
@@ -75,18 +75,18 @@ action-crawling-multiplier=0.25
 # Also, this damage will be added on top of the damage already done by the player's velocity
 player-use-fall-distance=true
 
+# Use the direct attack register rather than the standard attack callback (calculated client-side using a mixin)
+# This option is useful if you are having mod compatibility issues (ex. BetterCombat, or other combat based mods that may interfere with KineticDamage)
+# This option should usually be enabled, but in the case you are having issues, try disabling it
+player-use-direct-hit-register=true
+
 # Use player head rotation vector for math
 # This will use the player's head rotation instead of body velocity to calculate values
 # If enabled, the server will always use the players head rotation vector to calculate knockback vectors instead of the velocity vector of the player itself
 # In other words, the knockback will always occur in the direction the player is looking, this is not as realistic but it can be very fun
 player-use-head-rotation=false
 
-# Use the direct attack register rather than the standard attack callback (calculated client-side using a mixin)
-# This option is useful if you are having mod compatibility issue (ex. BetterCombat, or other combat based mods that may interfere with KineticDamage)
-# Disable this if you are having de-syncing issues
-player-use-direct-hit-register=true
-
-# Should the entity's velocity by completely overwritten by the new calculated velocity?
+# Should the entity's velocity be completely overwritten by the new calculated velocity?
 # By default, the new calculated velocity is added to the entities original velocity, this is much more realistic
 # If enabled, all original entity velocity will be ignored and overwritten by the new calculated velocity
 entity-ignore-original-velocity=false
