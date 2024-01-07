@@ -1,12 +1,12 @@
-<img src="assets/images/icon/icon_shadow.png" width=40%>
+<img src="assets/images/banner/banner.png" width=100%>
 
 ---
 
 # KineticDamage
-An easy-to-use, highly-configurable Minecraft mod that brings more realism to combat by scaling damage and knockback with kinetic energy.
+## An easy-to-use, highly-configurable Minecraft mod that brings more realism to combat by scaling damage and knockback with kinetic energy.
 
-## *This mod is still in development and lots of new features are still being planned!*
-### If you have a feature request or found a bug please create an [issue](https://github.com/o7q/KineticDamage/issues) or message me on Discord! (username: o7q) 😊
+### *This mod is still in development and lots of new features are still being planned! This is my first ever mod, I hope you find it useful!*
+### If you have a feature request or find a bug please create an [issue](https://github.com/o7q/KineticDamage/issues) or message me on Discord! (username: o7q) 😊
 
 ---
 
@@ -131,6 +131,8 @@ debug-chat-log=false
 ### 🥰 The idea and name for this mod came from my friend [**weeg**](https://github.com/weegb).
 
 ---
+
+<img src="assets/images/banner/icon_shadow.png" width=10%>
 
 **KineticDamage**\
 Written in Java for Minecraft Fabric
