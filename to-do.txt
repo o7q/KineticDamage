@@ -1,4 +1,4 @@
-- Add a feature to delay time
+- Add a feature to delay hit register time
 - Add a feature to automatically apply knockback without the player having to hit
 - Add particle effect options
 - Add sound effect options
