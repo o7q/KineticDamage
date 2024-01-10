@@ -1,12 +1,12 @@
-<img src="assets/images/banner/banner.png" width=100%>
+<img src="assets/images/banner/banner.png" alt="KineticDamage Banner" width=100%>
 
 ---
 
 # KineticDamage
-## An easy-to-use, highly-configurable Minecraft mod that brings more realism to combat by scaling damage and knockback with kinetic energy.
+**An easy-to-use, highly-configurable Minecraft mod that brings more realism to combat by scaling damage and knockback with kinetic energy.**  
 
-### *This mod is still in development and lots of new features are still being planned! This is my first ever mod, I hope you find it useful!*
-### If you have a feature request or find a bug please create an [issue](https://github.com/o7q/KineticDamage/issues) or message me on Discord! (username: o7q) 😊
+***This mod is still in development and lots of new features are still being planned! This is my first ever mod, I hope you find it useful!***  
+**If you have a feature request or find a bug please create an [issue](https://github.com/o7q/KineticDamage/issues) or message me on Discord! (username: o7q) 😊**  
 
 ---
 
@@ -14,31 +14,32 @@
 
 - ## ⚔️ Damage scaling
     ### This mod features a highly configurable damage scaling system that changes how Minecraft deals damage to mobs.
-    <img src="assets/images/gifs/1.gif" width=90%>
-    <img src="assets/images/gifs/2.gif" width=90%>
+    <img src="assets/images/gifs/1.gif" alt="Falling Attack Demonstrations" width=90%>
+    <img src="assets/images/gifs/2.gif" alt="Speed Attack Demonstration" width=90%>
 
 ---
 
 - ## 💨 Knockback scaling
     ### You can also configure how energy is transferred from yourself to other entities.
-    <img src="assets/images/gifs/3.gif" width=90%>
+    <img src="assets/images/gifs/3.gif" alt="Pig Taking Knockback" width=90%>
 
     <br>
 
     ### Highly compatible with other mods, here are some examples with [**ULTRACRAFT**](https://github.com/absolutelyaya/ultracraft)
-    <img src="assets/images/gifs/4.gif" width=90%>
-    <img src="assets/images/gifs/5.gif" width=90%>
+    <img src="assets/images/gifs/4.gif" alt="Pig Taking Knockback (ultracraft)" width=90%>
+    <img src="assets/images/gifs/5.gif" alt="Pig Taking Vertical Knockback (ULTRACRAFT mod)" width=90%>
 
     ### Example with [**BetterCombat**](https://github.com/ZsoltMolnarrr/BetterCombat)
-    <img src="assets/images/gifs/6.gif" width=90%>
+    <img src="assets/images/gifs/6.gif" alt="Wither Skeleton Taking Vertical Knockback (BetterCombat mod)" width=90%>
 
     ### Example with an elytra
-    <img src="assets/images/gifs/7.gif" width=90%>
+    <img src="assets/images/gifs/7.gif" alt="Wither Skeleton Taking Vertical Knockback (wearing elytra)" width=90%>
 
 ---
 
 # 📜 Commands
-- ### `/kineticdamage reload` *reloads the config*
+- **`/kineticdamage reload` *reloads the config***
+
 That's it! For now... 🙂
 
 ---
@@ -128,11 +129,11 @@ debug-chat-log=false
 
 ---
 
-### 🥰 The idea and name for this mod came from my friend [**weeg**](https://github.com/weegb).
+**🥰 The idea and name for this mod came from my friend [**weeg**](https://github.com/weegb).**
 
 ---
 
-<img src="assets/images/banner/icon_shadow.png" width=10%>
+<img src="assets/images/banner/icon_shadow.png" alt="KineticDamage Icon" width=10%>
 
 **KineticDamage**\
 Written in Java for Minecraft Fabric
