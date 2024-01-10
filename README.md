@@ -137,5 +137,3 @@ debug-chat-log=false
 
 **KineticDamage**\
 Written in Java for Minecraft Fabric
-
-<span style="font-size: 100px">test</span>
