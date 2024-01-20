@@ -13,26 +13,26 @@
 # ✨ Features
 
 - ## ⚔️ Damage scaling
-    ### This mod features a highly configurable damage scaling system that changes how Minecraft deals damage to mobs.
+    > This mod features a highly configurable damage scaling system that changes how Minecraft deals damage to mobs.
     <img src="assets/images/gifs/1.gif" alt="Falling Attack Demonstrations" width=90%>
     <img src="assets/images/gifs/2.gif" alt="Speed Attack Demonstration" width=90%>
 
 ---
 
 - ## 💨 Knockback scaling
-    ### You can also configure how energy is transferred from yourself to other entities.
+    > You can also configure how energy is transferred from yourself to other entities.
     <img src="assets/images/gifs/3.gif" alt="Pig Taking Knockback" width=90%>
 
     <br>
 
-    ### Highly compatible with other mods, here are some examples with [**ULTRACRAFT**](https://github.com/absolutelyaya/ultracraft)
+    > Highly compatible with other mods, here are some examples with [**ULTRACRAFT**](https://github.com/absolutelyaya/ultracraft)
     <img src="assets/images/gifs/4.gif" alt="Pig Taking Knockback (ultracraft)" width=90%>
     <img src="assets/images/gifs/5.gif" alt="Pig Taking Vertical Knockback (ULTRACRAFT mod)" width=90%>
 
-    ### Example with [**BetterCombat**](https://github.com/ZsoltMolnarrr/BetterCombat)
+    > Example with [**BetterCombat**](https://github.com/ZsoltMolnarrr/BetterCombat)
     <img src="assets/images/gifs/6.gif" alt="Wither Skeleton Taking Vertical Knockback (BetterCombat mod)" width=90%>
 
-    ### Example with an elytra
+    > Example with an elytra
     <img src="assets/images/gifs/7.gif" alt="Wither Skeleton Taking Vertical Knockback (wearing elytra)" width=90%>
 
 ---
@@ -45,7 +45,7 @@ That's it! For now... 🙂
 ---
 
 # ⚙️ Configuration
-### This is the default configuration file for KineticDamage. It contains an explanation for every configurable option and acts as the guide.
+This is the default configuration file for KineticDamage. It contains an explanation for every configurable option and acts as the guide.
 ```properties
 # KineticDamage config
 # Comment out 'version' with '#' if you do not want the config to regenerate on version change
