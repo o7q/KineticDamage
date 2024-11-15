@@ -1,3 +1,8 @@
+# At the moment, this mod/repository is not maintained.
+**I may revive this eventually, but I have been far too busy with work and other projects to continue updating this mod.** \
+I apologize for everyone who sent in bug reports/feature requests just for me to archive this repository. I greatly appreciate your time. \
+*If you are reading this and intersted in the mod, feel free to fork it and finish what I couldn't!*
+
 <img src="assets/images/banner/banner.png" alt="KineticDamage Banner" width=100%>
 
 ---
@@ -5,8 +10,8 @@
 # KineticDamage
 **An easy-to-use, highly-configurable Minecraft mod that brings more realism to combat by scaling damage and knockback with kinetic energy.**  
 
-***This mod is still in development and lots of new features are still being planned! This is my first ever mod, I hope you find it useful!***  
-**If you have a feature request or find a bug please create an [issue](https://github.com/o7q/KineticDamage/issues) or message me on Discord! (username: o7q) 😊**  
+<!-- ***This mod is still in development and lots of new features are still being planned! This is my first ever mod, I hope you find it useful!***   -->
+<!-- **If you have a feature request or find a bug please create an [issue](https://github.com/o7q/KineticDamage/issues) or message me on Discord! (username: o7q) 😊**   -->
 
 ---
 
